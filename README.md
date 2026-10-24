@@ -1,71 +1,75 @@
-# Mahmoud Salakawy — AI/ML Portfolio
+# Mahmoud Salakawy — AI / ML Engineer
 
-A personal engineering portfolio showcasing telecom AI, machine learning, grounded GenAI, research, and selected projects.
+AI/ML engineer with 10 years of telecom RAN experience, building time-series anomaly detection and grounded GenAI (RAG) for network operations.
 
-## About
+**Targeting:** AI Engineer · Machine Learning Engineer · GenAI / LLM Engineer
 
-The site introduces Mahmoud's telecom RAN experience and AI/ML engineering work, with a recruiter-focused homepage and dedicated case-study, research, and technical documentation pages.
+[Live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) · [CV (PDF)](public/) · [LinkedIn](PLACEHOLDER — VERIFY) · [Email](PLACEHOLDER — VERIFY) · [Published paper (DOI)](https://doi.org/10.21608/jicds.2026.457039.1026)
 
-## Featured Case Study
+---
 
-**RAN Anomaly RCA** connects time-series anomaly-detection research with a separate grounded root-cause analysis prototype. The case study explains architecture, evidence handling, engineering review, and limitations; it does not claim that every component forms one production deployment.
+## At a glance
 
-## Tech Stack
+- **Domain:** Telecom RAN, 2G–5G, Ericsson and Huawei networks
+- **Research:** 1 paper published in the *Journal of Intelligent Computing and Data Science* (2026), 1 under review
+- **Education:** MSc Data Science, Cairo University · BSc Electrical Engineering, Cairo University
+- **Certifications:** SAFe® 6.0 Practitioner · AWS Certified Machine Learning Engineer, Associate (in progress)
 
-- React and TypeScript
-- Vite and Tailwind CSS
-- React Router and Lucide React
-- Locally bundled Inter and JetBrains Mono fonts
+## Featured case study: RAN Anomaly RCA
 
-## Local Development
+Network engineers scan KPI dashboards cell by cell, and degradations often surface after customers are affected. This project combines two parts:
 
-Use Node.js 22.19 or later.
+1. **Detection:** learns each cell's normal behaviour, flags deviations, ranks them by severity, and separates sustained degradation from isolated noise. The method is published.
+2. **Grounded root-cause analysis:** a RAG pipeline that produces an RCA only when anomaly evidence exists. Facts (anomaly reports) and hypotheses (knowledge base) are kept separate.
+
+**Implemented:** per-cell forecasting with calibrated intervals · severity ranking · SHAP explanations · 5-step RAG pipeline with KPI-aware re-ranking · grounding gate · deterministic mock mode with optional LLM escalation
+
+**Planned / future:** multivariate detection models · enterprise LLM integration · drift detection and retraining triggers
+
+[Read the full case study →](PLACEHOLDER — link to /projects/ran-anomaly-rca)
+
+## Key results
+
+- **91.27% balanced accuracy** on a week of expert-labelled network data, held on a public benchmark without retuning (published method)
+- **0.8643 Macro-F1** across 8 categories on 47,837 IT support tickets
+- **11 passing pytest tests** covering the RCA safety contracts
+
+## Selected projects
+
+| Project | What it does | Key tools |
+|---|---|---|
+| IT Ticket Classification Pipeline | Classifies 47,837 tickets into 8 categories; served via FastAPI with validated requests | scikit-learn, TF-IDF, Calibrated LinearSVC, FastAPI, Pydantic |
+| 5G QoS Application Classification | Predicts application type from network KPIs using 4 engineered telecom features; benchmarks 8 models | XGBoost, LightGBM, CatBoost, SHAP |
+| Resume Screening Automation | 20+ node workflow that extracts resume text and scores fit with an LLM | n8n, OpenAI, Google Sheets API |
+
+## Skills and where to see them
+
+| Skill | Shown in |
+|---|---|
+| Time-series anomaly detection | RAN Anomaly RCA, published paper |
+| RAG and LLM pipelines | RAN Anomaly RCA (GenAI copilot) |
+| ML pipeline design and serving | IT Ticket Classification |
+| Model selection and explainability | 5G QoS Classification |
+| Python, FastAPI, testing | All projects, pytest suite |
+| Telecom RAN domain | Experience at Vodafone Intelligent Solutions |
+
+## How to review this work
+
+- **Quick review (2 min):** read the [live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) and the RAN Anomaly RCA case study.
+- **Code review:** the `src/content/` folder holds the public profile, project, and research data. Browser checks live in `tests/`.
+- **Source code of production systems is not public** because it belongs to my employer. The case study describes the design and results at a level that is safe to share.
+
+## Developer setup
+
+Requires Node.js 22.19 or later.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # local development
+npm run build      # production build
+npm run test:smoke # browser checks (requires Google Chrome)
 ```
 
-## Production Build
+## Privacy
 
-```bash
-npm run build
-npm run preview
-```
-
-## Verification
-
-With Google Chrome installed, run the browser checks against a production build:
-
-```bash
-npm run build
-npm run test:smoke
-```
-
-The tests cover routes, responsive navigation, accessibility, CV downloads, themes, and key interactions. Optional mobile Lighthouse checks are available through `npm run audit`. Generated reports remain local and are excluded from Git.
-
-## Project Structure
-
-```text
-src/
-  content/         Public profile, project, research, and documentation data
-  pages/           Homepage, engineering case study, research, and docs
-  components.tsx   Shared controls and synthetic diagrams
-  enhancements.tsx Theme and scrolling utilities
-  *.css            Base styles, presentation refinements, and theme tokens
-public/            Public CV, portrait, favicon, and Apache rewrite rules
-tests/             Playwright browser checks
-scripts/           Optional Lighthouse audit
-```
-
-## Deployment
-
-GitHub Pages is deployed by `.github/workflows/pages.yml` when `main` changes. The workflow builds under `/Mahmoud-ai-portfolio/` and generates HTML entry files for direct route loading and refresh. Only `dist/` is uploaded; private originals and source planning files are excluded.
-
-The published URL is https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/.
-
-For other static hosting, `npm run build` still defaults to the domain root. Deploy `dist/`, including `.htaccess` on Apache. To build for another subdirectory, set `VITE_BASE_PATH` with leading and trailing slashes.
-
-## Privacy / Content
-
-Examples and visualizations use public or synthetic information. Employer-confidential material, operational datasets, internal application source, private documents, and credentials are excluded. The downloadable CV contains public portfolio content; original personal documents are not tracked.
+Examples and visualizations use public or synthetic information. Employer-confidential material, operational datasets, internal application source, and credentials are excluded.
