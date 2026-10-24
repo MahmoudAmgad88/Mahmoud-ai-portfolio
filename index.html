@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <script>
+      try {
+        const theme = localStorage.getItem("portfolio-theme");
+        document.documentElement.dataset.theme =
+          theme === "dark" ? "dark" : "light";
+        if (theme === "dark")
+          document.querySelector('meta[name="theme-color"]').content =
+            "#19221e";
+      } catch {}
+    </script>
+    <meta
+      name="description"
+      content="Mahmoud Salakawy — AI and ML engineer working at the intersection of telecom networks, time-series machine learning and grounded GenAI."
+    />
+    <meta property="og:title" content="Mahmoud Salakawy | AI & ML Engineer" />
+    <meta
+      property="og:description"
+      content="Applied machine learning. Grounded AI. Engineering judgment."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Mahmoud Salakawy | AI & ML Engineer</title>
+  </head>
+  <body>
+    <noscript
+      >This portfolio needs JavaScript to display its interactive pages. Contact
+      Mahmoud at eng.salakawy@gmail.com or download the CV at
+      /mahmoud-salakawy-cv.pdf.</noscript
+    >
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "mahmoud-ai-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test:smoke": "playwright test",
+    "audit": "node scripts/audit.mjs",
+    "format": "prettier --write src tests *.ts *.json index.html README.md"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.0",
+    "@fontsource/jetbrains-mono": "^5.2.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.5.0",
+    "prettier": "^3.9.9",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.4.5"
+  }
+}

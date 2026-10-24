@@ -1,0 +1,30 @@
+# Dependencies and generated output
+node_modules/
+dist/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+
+# Local tools, caches and editor files
+.agents/
+.codex/
+.idea/
+.vscode/
+.cache/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Private originals and local recovery copies
+Personal Data/
