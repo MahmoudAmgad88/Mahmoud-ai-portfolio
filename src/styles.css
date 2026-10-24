@@ -457,9 +457,8 @@ p + p {
 }
 .card-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  color: var(--accent);
   margin-bottom: 28px;
 }
 .card-top span {

@@ -5,7 +5,6 @@ import {
   ArrowUpRight,
   Activity,
   BookOpen,
-  Braces,
   ChevronDown,
 } from "lucide-react";
 import {
@@ -206,7 +205,6 @@ export default function Home() {
           {visibleProjects.map((project) => (
             <article className="project-card" key={project.number}>
               <div className="card-top">
-                <Braces size={20} />
                 <span>{project.number}</span>
               </div>
               <p className="eyebrow">{project.type}</p>

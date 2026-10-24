@@ -318,9 +318,6 @@ body {
   min-height: 40px;
   align-items: center;
 }
-.card-top > svg {
-  color: var(--warm);
-}
 .paper-teaser {
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -1473,7 +1470,7 @@ html {
   padding: 24px;
 }
 .selected .project-card .card-top {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 .selected .project-card h3 {
   min-height: 56px;
