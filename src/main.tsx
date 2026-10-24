@@ -28,7 +28,7 @@ function RouteEffects() {
   useEffect(() => {
     const routeChanged = previousPath.current !== pathname;
     previousPath.current = pathname;
-    const page = meta[pathname] ?? {
+    const page = meta[pathname.replace(/\/+$/, "") || "/"] ?? {
       title: `Page not found | ${profile.name}`,
       description: "Find your way back to the portfolio.",
     };
@@ -137,7 +137,7 @@ function Header() {
           {items.map((item) => {
             const [path, hash] = item.to.split("#");
             const active =
-              location.pathname === path &&
+              (location.pathname.replace(/\/+$/, "") || "/") === path &&
               (hash ? location.hash === `#${hash}` : true);
             return (
               <Link
@@ -182,7 +182,7 @@ function NotFound() {
 }
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <RouteEffects />
       <a className="skip-link" href="#main">
         Skip to content

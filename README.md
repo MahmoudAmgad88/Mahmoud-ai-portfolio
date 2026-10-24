@@ -60,7 +60,11 @@ scripts/           Optional Lighthouse audit
 
 ## Deployment
 
-The static production build is generated in `dist/`. Deploy its contents to static hosting such as Hostinger, including the hidden `.htaccess` file on Apache. Other hosts need a fallback to `/index.html` for paths that do not match real files. The site assumes hosting at the domain root.
+GitHub Pages is deployed by `.github/workflows/pages.yml` when `main` changes. The workflow builds under `/Mahmoud-ai-portfolio/` and generates HTML entry files for direct route loading and refresh. Only `dist/` is uploaded; private originals and source planning files are excluded.
+
+The published URL is https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/.
+
+For other static hosting, `npm run build` still defaults to the domain root. Deploy `dist/`, including `.htaccess` on Apache. To build for another subdirectory, set `VITE_BASE_PATH` with leading and trailing slashes.
 
 ## Privacy / Content
 

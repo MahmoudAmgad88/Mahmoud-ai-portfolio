@@ -13,8 +13,8 @@ export const profile = {
   linkedin: "https://linkedin.com/in/mahmoud-salakawy-7b412b92" as
     string | null,
   github: null as string | null,
-  cv: "/mahmoud-salakawy-cv.pdf" as string | null,
-  photo: "/mahmoud-salakawy.jpg" as string | null,
+  cv: `${import.meta.env.BASE_URL}mahmoud-salakawy-cv.pdf` as string | null,
+  photo: `${import.meta.env.BASE_URL}mahmoud-salakawy.jpg` as string | null,
   photoPosition: "center 30%",
 };
 export const flagship = {
