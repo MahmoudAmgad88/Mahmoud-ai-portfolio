@@ -4,7 +4,7 @@ AI/ML engineer with 10 years of telecom RAN experience, building time-series ano
 
 **Targeting:** AI Engineer · Machine Learning Engineer · GenAI / LLM Engineer
 
-[Live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) · [CV (PDF)](public/) · [LinkedIn](https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true) · [Email](eng.salakawy@gmail.com ) · [Published paper (DOI)](https://doi.org/10.21608/jicds.2026.457039.1026)
+[Live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) · [CV (PDF)](public/) · [LinkedIn](https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true) · [Email](mailto:eng.salakawy@gmail.com) · [Published paper (DOI)](https://doi.org/10.21608/jicds.2026.457039.1026)
 
 ---
 

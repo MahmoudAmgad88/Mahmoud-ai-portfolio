@@ -107,7 +107,21 @@ export function Contact() {
       <div>
         <p className="eyebrow">LET’S CONNECT</p>
         <h2>Discuss an AI / ML opportunity.</h2>
-        <p>Email me or connect on LinkedIn to arrange a conversation.</p>
+        <p>Use your email app or open a message in Gmail.</p>
+        {profile.email && (
+          <p className="small">
+            <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            {" · "}
+            <a
+              className="text-link"
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open Gmail <ArrowUpRight size={14} />
+            </a>
+          </p>
+        )}
       </div>
       <div className="contact-actions">
         <CVButton />

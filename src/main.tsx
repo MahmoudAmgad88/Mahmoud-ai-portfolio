@@ -23,7 +23,7 @@ import Docs from "./pages/Docs";
 import Research from "./pages/Research";
 
 function RouteEffects() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
   const previousPath = useRef(pathname);
   useEffect(() => {
     const routeChanged = previousPath.current !== pathname;
@@ -58,7 +58,7 @@ function RouteEffects() {
       }
     }, 0);
     return () => window.clearTimeout(timer);
-  }, [pathname, hash]);
+  }, [pathname, hash, key]);
   return null;
 }
 function Header() {
