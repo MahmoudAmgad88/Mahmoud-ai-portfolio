@@ -10,7 +10,7 @@ export const profile = {
   capabilities: ["Time-Series ML", "GenAI / RAG", "Telecom AI"],
   availability: "Open to AI / ML / GenAI engineering roles",
   email: "eng.salakawy@gmail.com" as string | null,
-  linkedin: "https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92" as
+  linkedin: "https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true" as
     string | null,
   github: null as string | null,
   cv: `${import.meta.env.BASE_URL}mahmoud-salakawy-cv.pdf` as string | null,
