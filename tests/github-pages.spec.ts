@@ -34,7 +34,7 @@ test("GitHub Pages subpath supports assets, direct routes and anchors", async ({
   const pdf = await request.get(prefix + "mahmoud-salakawy-cv.pdf");
   expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
   await page
-    .getByRole("link", { name: "Explore RAN Anomaly RCA", exact: true })
+    .getByRole("link", { name: "Explore full case study", exact: true })
     .click();
   await expect(page).toHaveURL(
     new RegExp(prefix + "projects/ran-anomaly-rca$"),

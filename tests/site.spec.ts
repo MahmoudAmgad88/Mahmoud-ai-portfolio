@@ -70,7 +70,7 @@ test("navigation, project details and documentation anchors", async ({
   await expect(
     page.getByText(/One serialised pipeline covers cleaning, TF-IDF/),
   ).toBeVisible();
-  await page.getByRole("link", { name: "Explore RAN Anomaly RCA" }).click();
+  await page.getByRole("link", { name: "Explore full case study" }).click();
   await expect(page.locator("h1")).toContainText("RAN Anomaly");
   await page.goto("/not-a-page");
   await expect(page.getByRole("link", { name: "Back to home" })).toBeVisible();
@@ -257,8 +257,9 @@ test("recruiter scan leads from identity and proof to flagship and technical dep
   await expect(page.locator(".hero-name")).toHaveText("Mahmoud Salakawy");
   await expect(page.locator("h1")).toContainText("AI & ML Engineer");
   await expect(
-    page.getByRole("link", { name: "Explore RAN Anomaly RCA", exact: true }),
+    page.getByRole("link", { name: "View 11 projects", exact: true }),
   ).toBeInViewport();
+  await expect(page.locator("h1")).not.toContainText("telecom");
   await expect(
     page.getByRole("link", { name: "Download CV" }).first(),
   ).toBeInViewport();

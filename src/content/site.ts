@@ -4,16 +4,16 @@ export const profile = {
   name: "Mahmoud Salakawy",
   role: "AI & ML Engineer",
   initials: "MS",
-  headline: "Trustworthy AI for telecom networks.",
+  headline: "I ship ML and GenAI that works on real data.",
   intro:
-    "I turn messy operational data into forecasts, anomaly alerts and grounded GenAI answers that engineers can trust.",
+    "From raw data to tested, documented services: forecasting, anomaly detection and RAG applications that teams can verify and maintain. Proven in production across two countries and in peer-reviewed research.",
   capabilities: ["Time-Series ML", "GenAI / RAG", "Telecom AI"],
   hireFor: [
     "Forecasting & anomaly detection",
     "RAG / LLM apps with guardrails",
     "ML APIs & MLOps",
   ],
-  availability: "Open to AI / ML / GenAI engineering roles",
+  availability: "Open to AI Engineer, ML Engineer and GenAI Engineer roles",
   email: "eng.salakawy@gmail.com" as string | null,
   linkedin:
     "https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true" as
@@ -478,7 +478,7 @@ export const meta: Record<string, { title: string; description: string }> = {
   "/": {
     title: `${profile.name} | ${profile.role}`,
     description:
-      "Telecom domain expertise, time-series machine learning and grounded GenAI. Explore the work and research of Mahmoud Salakawy.",
+      "AI & ML Engineer shipping forecasting, anomaly detection and RAG applications on real data, with production deployments and peer-reviewed research.",
   },
   "/projects/ran-anomaly-rca": {
     title: `${flagship.title} | ${profile.name}`,

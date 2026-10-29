@@ -267,3 +267,13 @@ ul.credentials li {
     padding: 4px 9px;
   }
 }
+
+/* Proof strip: every figure at the same weight */
+.recruiter-proof.recruiter-proof > * > strong {
+  font-size: clamp(20px, 2.2vw, 24px);
+  margin-top: 0;
+}
+.recruiter-hero .hero-copy .hero-availability.hero-availability {
+  font-size: 12px;
+  color: var(--text);
+}

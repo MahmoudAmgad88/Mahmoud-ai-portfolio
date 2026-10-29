@@ -67,8 +67,8 @@ export default function Home() {
             </ul>
           </div>
           <div className="hero-actions">
-            <Link className="button primary" to="/projects/ran-anomaly-rca">
-              Explore RAN Anomaly RCA <ArrowUpRight size={18} />
+            <Link className="button primary" to="/#selected-work">
+              View {projects.length} projects <ArrowUpRight size={18} />
             </Link>
             <CVButton />
           </div>
@@ -103,18 +103,18 @@ export default function Home() {
       >
         <div>
           <strong>10 years</strong>
-          <span>Telecom RAN</span>
+          <span>Industry engineering / telecom</span>
         </div>
         <Link to="/#project-01" onClick={() => setCategory("all")}>
           <strong>2 countries</strong>
-          <span>Anomaly detection in production</span>
+          <span>ML in production</span>
         </Link>
         <a href={paper.doi} target="_blank" rel="noreferrer">
           <strong>
             {paper.result}
             <ArrowUpRight size={15} />
           </strong>
-          <span>{paper.metricLabel} / Peer-reviewed</span>
+          <span>Peer-reviewed anomaly detection</span>
         </a>
         <Link to="/#experience">
           <strong>MSc 2026</strong>
