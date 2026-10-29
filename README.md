@@ -26,7 +26,7 @@ Network engineers scan KPI dashboards cell by cell, and degradations often surfa
 
 **Planned / future:** multivariate detection models · enterprise LLM integration · drift detection and retraining triggers
 
-[Read the full case study →](PLACEHOLDER — link to /projects/ran-anomaly-rca)
+[Read the full case study →](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/projects/ran-anomaly-rca/)
 
 ## Key results
 
@@ -38,9 +38,12 @@ Network engineers scan KPI dashboards cell by cell, and degradations often surfa
 
 | Project | What it does | Key tools |
 |---|---|---|
+| [Civil Code RAG](https://github.com/MahmoudAmgad88/civil-code-rag-mlops) | Bilingual Arabic/English RAG API with routing, citation validation and a versioned index; [case study](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/projects/civil-code-rag/) | FastAPI, Sentence Transformers, DVC, MLflow, Docker, GitHub Actions |
 | IT Ticket Classification Pipeline | Classifies 47,837 tickets into 8 categories; served via FastAPI with validated requests | scikit-learn, TF-IDF, Calibrated LinearSVC, FastAPI, Pydantic |
 | 5G QoS Application Classification | Predicts application type from network KPIs using 4 engineered telecom features; benchmarks 8 models | XGBoost, LightGBM, CatBoost, SHAP |
+| Voice Call QoE Prediction | Classifies call quality (MOS) from ~106k drive-test records; tuned decision tree reaches 70.2% hold-out accuracy | pandas, scikit-learn, GridSearchCV |
 | Resume Screening Automation | 20+ node workflow that extracts resume text and scores fit with an LLM | n8n, OpenAI, Google Sheets API |
+| [CI Model-Quality Gate](https://github.com/MahmoudAmgad88/ci_gitops_mini_lab) | CI pipeline that fails when model accuracy drops below a 0.85 baseline | GitHub Actions, pytest, Docker |
 
 ## Skills and where to see them
 

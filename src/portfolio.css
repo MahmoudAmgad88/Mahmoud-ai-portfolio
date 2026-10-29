@@ -1,0 +1,228 @@
+/* Project catalogue, skills evidence and the Civil Code RAG case study. */
+
+.selected .project-card {
+  display: flex;
+  flex-direction: column;
+  scroll-margin-top: 96px;
+}
+.selected .project-grid {
+  align-items: stretch;
+}
+.selected .project-card .card-top {
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.card-top .project-access {
+  font: 9px/1.6 var(--font-mono);
+  letter-spacing: 1px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 3px 9px;
+}
+.card-top .project-access.public {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.selected .project-card > .project-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-height: 0;
+  margin: -4px 0 14px;
+}
+.project-highlight strong {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+.project-highlight span {
+  font: 10px/1.5 var(--font-mono);
+  color: var(--muted);
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: -4px 0 12px;
+}
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+.project-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Skills with evidence */
+.skill-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+  margin: 0;
+}
+.skill-map > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+.skill-map dt {
+  font-size: 14px;
+  font-weight: 500;
+}
+.skill-map dd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px 14px;
+  margin: 0;
+  text-align: right;
+}
+.skill-map a {
+  font-size: 12px;
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* Education and certification */
+ul.credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 26px 0 0;
+  list-style: none;
+}
+ul.credentials li {
+  font-size: 12px;
+  padding: 7px 13px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--surface);
+}
+
+/* Civil Code RAG case study */
+.case-actions {
+  margin-top: 22px;
+}
+.scope-figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 26px 0 0;
+}
+.scope-figures > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.scope-figures dd {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+.scope-figures dt {
+  font: 10px/1.5 var(--font-mono);
+  color: var(--muted);
+}
+.route-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.route-list > div {
+  padding: 16px;
+  border-left: 2px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 10px 10px 0;
+}
+.route-list dt {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.route-list dd {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.journey {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 22px;
+  counter-reset: none;
+}
+.journey li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.journey li span {
+  font: 10px var(--font-mono);
+  color: var(--accent);
+}
+.code-sample {
+  margin: 18px 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-raised);
+  font: 12px/1.8 var(--font-mono);
+  color: var(--text);
+}
+.case-contribution .text-link {
+  margin-top: 12px;
+}
+
+@media (max-width: 1100px) {
+  .scope-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .skill-map,
+  .route-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .skill-map > div {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .skill-map dd {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .scope-figures dd {
+    font-size: 24px;
+  }
+}
+.selected .project-card h3,
+.selected .project-card > .project-purpose {
+  min-height: 0;
+}

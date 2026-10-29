@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -6,13 +6,17 @@ import {
   Activity,
   BookOpen,
   ChevronDown,
+  Github,
 } from "lucide-react";
 import {
+  credentials,
   experience,
   flagship,
   paper,
   profile,
+  projectFilters,
   projects,
+  skills,
 } from "../content/site";
 import {
   Contact,
@@ -24,15 +28,20 @@ import {
 } from "../components";
 
 export default function Home() {
-  const [category, setCategory] = useState("All projects");
-  const categories = ["All projects", "Machine learning", "LLM workflows"];
+  const [category, setCategory] = useState<string>("all");
   const visibleProjects = projects.filter(
     (project) =>
-      category === "All projects" ||
-      (category === "LLM workflows"
-        ? project.type === "LLM WORKFLOWS"
-        : project.type !== "LLM WORKFLOWS"),
+      category === "all" ||
+      project.categories.some((item) => item === category),
   );
+  const projectLink = (title: string) =>
+    title === flagship.title
+      ? flagship.route
+      : title === "Published research"
+        ? "/research"
+        : title === "Experience"
+          ? "/#experience"
+          : `/#project-${projects.find((p) => p.title === title)?.number}`;
   const career = [...experience].reverse();
   return (
     <>
@@ -174,11 +183,11 @@ export default function Home() {
       >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">02 / SUPPORTING ENGINEERING WORK</p>
+            <p className="eyebrow">02 / ALL PROJECTS</p>
             <h2 id="selected-title">Beyond the flagship.</h2>
           </div>
           <span className="small muted">
-            Classification, APIs and LLM workflows
+            ML, GenAI and MLOps, from notebook to API
           </span>
         </div>
         <div className="project-toolbar">
@@ -187,13 +196,13 @@ export default function Home() {
             role="group"
             aria-label="Filter projects"
           >
-            {categories.map((item) => (
+            {projectFilters.map((item) => (
               <button
-                key={item}
-                aria-pressed={category === item}
-                onClick={() => setCategory(item)}
+                key={item.value}
+                aria-pressed={category === item.value}
+                onClick={() => setCategory(item.value)}
               >
-                {item}
+                {item.label}
               </button>
             ))}
           </div>
@@ -203,14 +212,48 @@ export default function Home() {
         </div>
         <div className="project-grid">
           {visibleProjects.map((project) => (
-            <article className="project-card" key={project.number}>
+            <article
+              className="project-card"
+              id={`project-${project.number}`}
+              key={project.number}
+            >
               <div className="card-top">
+                <span
+                  className={`project-access${project.repo ? " public" : ""}`}
+                >
+                  {project.availability}
+                </span>
                 <span>{project.number}</span>
               </div>
               <p className="eyebrow">{project.type}</p>
               <h3>{project.title}</h3>
               <p className="project-purpose">{project.description}</p>
+              {project.highlight && (
+                <p className="project-highlight">
+                  <strong>{project.highlight.value}</strong>
+                  <span>{project.highlight.label}</span>
+                </p>
+              )}
               <Tags items={project.tags} />
+              {(project.caseStudy || project.repo) && (
+                <div className="project-links">
+                  {project.caseStudy && (
+                    <Link to={project.caseStudy}>
+                      Case study <ArrowUpRight size={14} />
+                    </Link>
+                  )}
+                  {project.repo && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`${project.title} source on GitHub`}
+                    >
+                      <Github size={14} /> Source
+                    </a>
+                  )}
+                </div>
+              )}
               <details>
                 <summary>
                   Project details <ChevronDown size={16} />
@@ -233,12 +276,44 @@ export default function Home() {
       </section>
 
       <section
+        className="section skills-evidence"
+        id="skills"
+        aria-labelledby="skills-title"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">03 / SKILLS WITH EVIDENCE</p>
+            <h2 id="skills-title">Every claim points to work.</h2>
+          </div>
+          <span className="small muted">Skill and where to see it</span>
+        </div>
+        <dl className="skill-map">
+          {skills.map((item) => (
+            <div key={item.skill}>
+              <dt>{item.skill}</dt>
+              <dd>
+                {item.evidence.map((title) => (
+                  <Link
+                    key={title}
+                    to={projectLink(title)}
+                    onClick={() => setCategory("all")}
+                  >
+                    {title}
+                  </Link>
+                ))}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section
         className="section research-teaser"
         aria-labelledby="research-title"
       >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">03 / RESEARCH EVIDENCE</p>
+            <p className="eyebrow">04 / RESEARCH EVIDENCE</p>
             <h2 id="research-title">Engineering backed by research.</h2>
           </div>
         </div>
@@ -264,7 +339,7 @@ export default function Home() {
       >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">04 / EXPERIENCE</p>
+            <p className="eyebrow">05 / EXPERIENCE</p>
             <h2 id="experience-title">Telecom foundations. Applied AI.</h2>
           </div>
         </div>
@@ -289,10 +364,14 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <p className="education">
-          BSc Electrical Engineering / Cairo University, 2011 <span> / </span>{" "}
-          SAFe 6.0 Practitioner
-        </p>
+        <ul
+          className="education credentials"
+          aria-label="Education and certification"
+        >
+          {credentials.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
       </section>
       <Contact />
     </>

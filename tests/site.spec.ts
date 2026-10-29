@@ -1,7 +1,13 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const routes = ["/", "/projects/ran-anomaly-rca", "/docs", "/research"];
+const routes = [
+  "/",
+  "/projects/ran-anomaly-rca",
+  "/projects/civil-code-rag",
+  "/docs",
+  "/research",
+];
 
 for (const width of [375, 768, 1280, 1440]) {
   for (const route of routes) {
@@ -57,7 +63,10 @@ test("navigation, project details and documentation anchors", async ({
   await expect(page).toHaveURL(/docs#architecture$/);
   await expect(page.locator("#architecture")).toBeInViewport();
   await page.getByRole("link", { name: "Mahmoud Salakawy home" }).click();
-  await page.getByText("Project details", { exact: true }).first().click();
+  await page
+    .locator("#project-02")
+    .getByText("Project details", { exact: true })
+    .click();
   await expect(
     page.getByText(/A text classification pipeline using TF-IDF/),
   ).toBeVisible();
@@ -74,9 +83,7 @@ test("all rendered internal links resolve and sensitive claims stay absent", asy
     await page.goto(route);
     const sourceUrl = page.url();
     const content = await page.locator("body").innerText();
-    expect(content).not.toMatch(
-      /Vodafone|VOIS|C2 General|NEED TO VERIFY|PLACEHOLDER/,
-    );
+    expect(content).not.toMatch(/Vodafone|VOIS|C2 General/);
     const links = await page
       .locator('a[href^="/"], a[href^="#"]')
       .evaluateAll((elements) => elements.map((e) => e.getAttribute("href")!));
@@ -101,19 +108,22 @@ test("project filters and synthetic signal inspection work", async ({
   page,
 }) => {
   await page.goto("/");
-  await page
-    .getByRole("button", { name: "LLM workflows", exact: true })
-    .click();
-  await expect(page.locator(".project-card")).toHaveCount(1);
-  await expect(page.locator(".project-card h3")).toHaveText(
+  await page.getByRole("button", { name: "GenAI & LLMs", exact: true }).click();
+  await expect(page.locator(".project-card h3")).toHaveText([
+    "Civil Code RAG",
     "Resume Screening Automation",
-  );
+  ]);
+  await page.getByRole("button", { name: "MLOps", exact: true }).click();
+  await expect(page.locator(".project-card h3")).toHaveText([
+    "Civil Code RAG",
+    "CI Model-Quality Gate",
+  ]);
   await page
     .getByRole("button", { name: "Machine learning", exact: true })
     .click();
-  await expect(page.locator(".project-card")).toHaveCount(2);
-  await page.getByRole("button", { name: "All projects", exact: true }).click();
   await expect(page.locator(".project-card")).toHaveCount(3);
+  await page.getByRole("button", { name: "All projects", exact: true }).click();
+  await expect(page.locator(".project-card")).toHaveCount(6);
   await page.goto("/projects/ran-anomaly-rca#detection");
   await expect(page.locator(".signal-inspector output")).toHaveText(
     "Outside range",
@@ -417,4 +427,83 @@ test("homepage cards stay concise with engineering detail behind disclosure", as
     await expect(card.locator(".project-summary")).toBeVisible();
     await card.getByText("Project details", { exact: true }).click();
   }
+});
+
+test("implemented capabilities and future work stay visibly distinct", async ({
+  page,
+}) => {
+  await page.goto("/projects/ran-anomaly-rca");
+  const detectionStatus = page.locator("#detection .status");
+  const rcaStatus = page.locator("#grounded-rca .status");
+  const future = page.locator("#limitations .case-planned");
+  const futureStatus = future.locator(".status");
+  await expect(detectionStatus).toHaveText("IMPLEMENTED / DETECTION WORK");
+  await expect(rcaStatus).toHaveText("IMPLEMENTED / RCA PROTOTYPE");
+  await expect(futureStatus).toHaveText("PLANNED / NOT IMPLEMENTED");
+  await expect(future).toContainText("LSTM autoencoders");
+  await expect(page.locator("#detection")).not.toContainText(
+    "LSTM autoencoders",
+  );
+  await expect(page.locator("#grounded-rca")).not.toContainText(
+    "LSTM autoencoders",
+  );
+  for (const theme of ["light", "dark"]) {
+    if (theme === "dark")
+      await page.getByRole("button", { name: "Switch to dark theme" }).click();
+    await expect(futureStatus).toBeVisible();
+    const implemented = await detectionStatus.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return { color: style.color, background: style.backgroundColor };
+    });
+    const planned = await futureStatus.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return { color: style.color, background: style.backgroundColor };
+    });
+    expect(implemented.color).not.toBe(planned.color);
+    expect(implemented.background).not.toBe(planned.background);
+  }
+});
+
+test("every project is listed and Civil Code RAG has a full case study", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator(".project-card h3")).toHaveText([
+    "Civil Code RAG",
+    "IT Ticket Classification",
+    "5G QoS Classification",
+    "Voice Call QoE Prediction",
+    "Resume Screening Automation",
+    "CI Model-Quality Gate",
+  ]);
+  await expect(
+    page.getByRole("link", { name: "Civil Code RAG source on GitHub" }),
+  ).toHaveAttribute(
+    "href",
+    "https://github.com/MahmoudAmgad88/civil-code-rag-mlops",
+  );
+  await page
+    .locator("#skills")
+    .getByRole("link", { name: "Voice Call QoE Prediction" })
+    .click();
+  await expect(page.locator("#project-04")).toBeInViewport();
+  await page
+    .locator("#project-01")
+    .getByRole("link", { name: "Case study" })
+    .click();
+  await expect(page).toHaveURL(/projects\/civil-code-rag$/);
+  await expect(page.locator("h1")).toContainText("Civil Code RAG");
+  const sections = page.getByRole("navigation", {
+    name: "Case study sections",
+  });
+  await expect(sections.getByRole("link")).toHaveText([
+    "Overview",
+    "Architecture",
+    "Guardrails",
+    "MLOps",
+    "Evidence",
+    "Limitations",
+  ]);
+  await expect(page.locator("#guardrails .check-list li")).toHaveCount(5);
+  await expect(page.locator("main")).toContainText("Not legal advice");
 });

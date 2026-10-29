@@ -14,11 +14,13 @@ import "@fontsource/inter/latin-600.css";
 import "@fontsource/jetbrains-mono/latin-400.css";
 import "./styles.css";
 import "./refinements.css";
+import "./portfolio.css";
 import { PageEnhancements, ThemeToggle } from "./enhancements";
 import { meta, navigation, profile } from "./content/site";
 import { CVButton, SocialLinks } from "./components";
 import Home from "./pages/Home";
 import CaseStudy from "./pages/CaseStudy";
+import CivilCodeRag from "./pages/CivilCodeRag";
 import Docs from "./pages/Docs";
 import Research from "./pages/Research";
 
@@ -193,6 +195,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects/ran-anomaly-rca" element={<CaseStudy />} />
+          <Route path="/projects/civil-code-rag" element={<CivilCodeRag />} />
           <Route path="/docs" element={<Docs />} />
           <Route path="/research" element={<Research />} />
           <Route path="*" element={<NotFound />} />
