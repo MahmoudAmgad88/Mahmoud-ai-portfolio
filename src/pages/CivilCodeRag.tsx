@@ -235,8 +235,9 @@ curl http://127.0.0.1:8000/health`}
             </code>
           </pre>
           <p className="small">
-            Unit and integration tests mock the language model and make no paid
-            calls. A live end-to-end run is a separate, deliberate step.
+            73 tests passed in a recorded run; unit and integration tests mock
+            the language model and make no paid calls. Removing GPU and CUDA
+            dependencies cut the Docker image from about 18.5 GB to 1.8 GB.
           </p>
           <a
             className="text-link"

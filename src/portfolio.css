@@ -226,3 +226,44 @@ ul.credentials li {
 .selected .project-card > .project-purpose {
   min-height: 0;
 }
+
+/* Hero: the five-second fit check */
+.hero-fit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: -6px 0 24px;
+}
+.hero-fit p {
+  font: 10px/1.6 var(--font-mono);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--warm);
+  margin: 0;
+}
+.hero-fit ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.hero-fit li {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 30px;
+  padding: 5px 11px;
+}
+@media (max-width: 600px) {
+  .hero-fit {
+    margin-bottom: 18px;
+  }
+  .hero-fit li {
+    font-size: 11px;
+    padding: 4px 9px;
+  }
+}

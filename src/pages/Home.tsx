@@ -58,6 +58,14 @@ export default function Home() {
             <span>{profile.headline}</span>
           </h1>
           <p className="hero-description">{profile.intro}</p>
+          <div className="hero-fit">
+            <p id="hire-for">Hire me for</p>
+            <ul aria-labelledby="hire-for">
+              {profile.hireFor.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
           <div className="hero-actions">
             <Link className="button primary" to="/projects/ran-anomaly-rca">
               Explore RAN Anomaly RCA <ArrowUpRight size={18} />
@@ -79,9 +87,6 @@ export default function Home() {
               Research <ArrowUpRight size={13} />
             </Link>
           </div>
-          <p className="hero-intersection">
-            {profile.capabilities.join(" / ")}
-          </p>
           <p className="hero-availability">
             <span />
             {profile.availability}
@@ -100,20 +105,20 @@ export default function Home() {
           <strong>10 years</strong>
           <span>Telecom RAN</span>
         </div>
-        <div>
-          <strong>4+ years</strong>
-          <span>Building ML systems</span>
-        </div>
+        <Link to="/#project-01" onClick={() => setCategory("all")}>
+          <strong>2 countries</strong>
+          <span>Anomaly detection in production</span>
+        </Link>
         <a href={paper.doi} target="_blank" rel="noreferrer">
           <strong>
             {paper.result}
             <ArrowUpRight size={15} />
           </strong>
-          <span>{paper.metricLabel} / Published research</span>
+          <span>{paper.metricLabel} / Peer-reviewed</span>
         </a>
-        <Link to="/research">
-          <strong>Peer-reviewed</strong>
-          <span>Research publication</span>
+        <Link to="/#experience">
+          <strong>MSc 2026</strong>
+          <span>Data Science / Cairo University</span>
         </Link>
       </section>
 

@@ -64,11 +64,11 @@ test("navigation, project details and documentation anchors", async ({
   await expect(page.locator("#architecture")).toBeInViewport();
   await page.getByRole("link", { name: "Mahmoud Salakawy home" }).click();
   await page
-    .locator("#project-02")
+    .locator("#project-04")
     .getByText("Project details", { exact: true })
     .click();
   await expect(
-    page.getByText(/A text classification pipeline using TF-IDF/),
+    page.getByText(/One serialised pipeline covers cleaning, TF-IDF/),
   ).toBeVisible();
   await page.getByRole("link", { name: "Explore RAN Anomaly RCA" }).click();
   await expect(page.locator("h1")).toContainText("RAN Anomaly");
@@ -109,21 +109,26 @@ test("project filters and synthetic signal inspection work", async ({
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "GenAI & LLMs", exact: true }).click();
-  await expect(page.locator(".project-card h3")).toHaveText([
-    "Civil Code RAG",
-    "Resume Screening Automation",
-  ]);
+  await expect(page.locator(".project-card")).toHaveCount(5);
   await page.getByRole("button", { name: "MLOps", exact: true }).click();
   await expect(page.locator(".project-card h3")).toHaveText([
     "Civil Code RAG",
+    "Small-LLM Fine-Tuning",
     "CI Model-Quality Gate",
+  ]);
+  await page
+    .getByRole("button", { name: "In production", exact: true })
+    .click();
+  await expect(page.locator(".project-card h3")).toHaveText([
+    "RAN KPI Anomaly Detection",
+    "Flight Meal Demand Forecasting",
   ]);
   await page
     .getByRole("button", { name: "Machine learning", exact: true })
     .click();
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".project-card")).toHaveCount(5);
   await page.getByRole("button", { name: "All projects", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(6);
+  await expect(page.locator(".project-card")).toHaveCount(11);
   await page.goto("/projects/ran-anomaly-rca#detection");
   await expect(page.locator(".signal-inspector output")).toHaveText(
     "Outside range",
@@ -257,8 +262,9 @@ test("recruiter scan leads from identity and proof to flagship and technical dep
   await expect(
     page.getByRole("link", { name: "Download CV" }).first(),
   ).toBeInViewport();
-  await expect(page.locator(".hero-intersection")).toContainText(
-    "Time-Series ML",
+  await expect(page.locator(".hero-fit")).toBeInViewport();
+  await expect(page.locator(".hero-fit")).toContainText(
+    "Forecasting & anomaly detection",
   );
   await expect(page.locator(".chart")).toHaveCount(0);
   const sequence = await page
@@ -468,12 +474,22 @@ test("every project is listed and Civil Code RAG has a full case study", async (
   page,
 }) => {
   await page.goto("/");
+  await expect(page.locator(".hero-fit li")).toHaveText([
+    "Forecasting & anomaly detection",
+    "RAG / LLM apps with guardrails",
+    "ML APIs & MLOps",
+  ]);
   await expect(page.locator(".project-card h3")).toHaveText([
+    "RAN KPI Anomaly Detection",
+    "Flight Meal Demand Forecasting",
     "Civil Code RAG",
     "IT Ticket Classification",
     "5G QoS Classification",
+    "Weather-Aware RAG Assistant",
     "Voice Call QoE Prediction",
     "Resume Screening Automation",
+    "Small-LLM Fine-Tuning",
+    "Multi-Agent Procurement Crew",
     "CI Model-Quality Gate",
   ]);
   await expect(
@@ -486,9 +502,9 @@ test("every project is listed and Civil Code RAG has a full case study", async (
     .locator("#skills")
     .getByRole("link", { name: "Voice Call QoE Prediction" })
     .click();
-  await expect(page.locator("#project-04")).toBeInViewport();
+  await expect(page.locator("#project-07")).toBeInViewport();
   await page
-    .locator("#project-01")
+    .locator("#project-03")
     .getByRole("link", { name: "Case study" })
     .click();
   await expect(page).toHaveURL(/projects\/civil-code-rag$/);
