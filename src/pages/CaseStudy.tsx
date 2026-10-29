@@ -141,6 +141,9 @@ export default function CaseStudy() {
           </p>
           <CheckList items={detection} />
           <TextLink to="/docs#technical-guide">Detection methodology</TextLink>
+          <TextLink to="/projects/ran-kpi-anomaly-detection">
+            See the method in production
+          </TextLink>
           <div className="case-signal">
             <h3>Inspect a synthetic signal</h3>
             <p>

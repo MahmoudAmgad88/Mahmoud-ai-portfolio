@@ -4,6 +4,7 @@ import { copyFile, mkdir, writeFile } from "node:fs/promises";
 for (const route of [
   "projects/ran-anomaly-rca",
   "projects/civil-code-rag",
+  "projects/ran-kpi-anomaly-detection",
   "docs",
   "research",
 ]) {

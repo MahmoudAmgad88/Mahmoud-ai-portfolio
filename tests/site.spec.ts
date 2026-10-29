@@ -5,6 +5,7 @@ const routes = [
   "/",
   "/projects/ran-anomaly-rca",
   "/projects/civil-code-rag",
+  "/projects/ran-kpi-anomaly-detection",
   "/docs",
   "/research",
 ];
@@ -523,4 +524,26 @@ test("every project is listed and Civil Code RAG has a full case study", async (
   ]);
   await expect(page.locator("#guardrails .check-list li")).toHaveCount(5);
   await expect(page.locator("main")).toContainText("Not legal advice");
+});
+
+test("research connects to the production tool and courses are listed", async ({
+  page,
+}) => {
+  await page.goto("/research");
+  await page.getByRole("link", { name: "See how it was deployed" }).click();
+  await expect(page).toHaveURL(/projects\/ran-kpi-anomaly-detection$/);
+  await expect(page.locator(".pipeline-stages > li")).toHaveCount(4);
+  await expect(page.locator(".pipeline-research")).toContainText(
+    "Forecast & detect",
+  );
+  await expect(page.locator("#research .result-callout")).toContainText(
+    "91.27%",
+  );
+  await expect(page.locator("main")).not.toContainText(/VOIS|Vodafone/);
+  await page.goto("/");
+  const courses = page.locator("details.courses");
+  await expect(courses.locator(".course-themes li")).toHaveCount(14);
+  await expect(courses.locator(".course-themes")).toBeHidden();
+  await courses.locator("summary").click();
+  await expect(courses.getByText("Time Series Forecasting")).toBeVisible();
 });

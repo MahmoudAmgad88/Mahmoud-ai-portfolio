@@ -1,5 +1,5 @@
 import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { paper } from "../content/site";
+import { paper, production } from "../content/site";
 import { TextLink } from "../components";
 
 export default function Research() {
@@ -82,6 +82,19 @@ export default function Research() {
           <h3>{paper.metricLabel}</h3>
           <p>{paper.resultNote}</p>
         </div>
+      </section>
+      <section className="section next-research research-production">
+        <div>
+          <p className="eyebrow">FROM PAPER TO PRODUCTION</p>
+          <h2>The method runs in production.</h2>
+          <p>
+            The published detection method is stage 03 of a RAN KPI anomaly
+            detection tool now used by engineering teams in two countries. The
+            research decides what counts as an anomaly; the application turns it
+            into ranked, explained evidence for engineers.
+          </p>
+        </div>
+        <TextLink to={production.route}>See how it was deployed</TextLink>
       </section>
       <section className="section next-research">
         <div>

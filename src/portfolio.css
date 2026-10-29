@@ -289,3 +289,317 @@ ul.credentials li {
   font-size: 12px;
   color: var(--text);
 }
+
+/* Research-to-production case study */
+.pipeline {
+  margin: 24px 0 8px;
+}
+.pipeline-stages {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.pipeline-stages > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.pipeline-stages > li + li::before {
+  content: "→";
+  position: absolute;
+  left: -13px;
+  top: 50%;
+  color: var(--muted);
+  font-size: 13px;
+}
+.pipeline-stages h3 {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin: 0;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border);
+}
+.pipeline-stages h3 span,
+.pipeline-human h3 span {
+  font: 11px var(--font-mono);
+  color: var(--muted);
+}
+.pipeline-stages ul {
+  margin: 0;
+  padding: 12px 14px 0 30px;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.pipeline-stages ul li + li {
+  margin-top: 6px;
+}
+.pipeline-tech {
+  margin: auto 0 0;
+  padding: 12px 14px 14px;
+  font: 10px/1.5 var(--font-mono);
+  color: var(--muted);
+}
+.pipeline-stages > li.pipeline-research {
+  border-color: var(--warm);
+}
+.pipeline-research h3 {
+  background: var(--warm);
+  color: var(--bg);
+}
+.pipeline-research h3 span {
+  color: var(--bg);
+}
+.pipeline-research .pipeline-tech {
+  color: var(--warm);
+  padding-bottom: 6px;
+}
+.pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin: 0 14px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--warm);
+}
+.pipeline-human {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent-soft);
+}
+.pipeline-human h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--accent);
+}
+.pipeline-human p {
+  margin: 0;
+  font-size: 13px;
+}
+.bridge {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0;
+  margin: 22px 0;
+  list-style: none;
+}
+.bridge li {
+  position: relative;
+  padding: 14px 16px;
+  border-top: 2px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 0 10px 10px;
+  font-size: 13px;
+}
+.bridge li:last-child {
+  border-top-color: var(--warm);
+}
+.bridge li + li::before {
+  content: "→";
+  position: absolute;
+  left: -13px;
+  top: 40%;
+  color: var(--muted);
+}
+.bridge span {
+  display: block;
+  font: 10px/1.6 var(--font-mono);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.research-bridge {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  margin: 8px 0 22px;
+}
+.paper-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  align-self: start;
+}
+.paper-card .eyebrow,
+.paper-card .text-link {
+  color: var(--bg);
+}
+.case-section .paper-card h3 {
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+.case-section .paper-card p {
+  font-size: 13px;
+  color: var(--bg);
+}
+.case-section .paper-card h3 {
+  color: var(--bg);
+}
+.research-points {
+  margin: 0;
+}
+.research-points > div + div {
+  margin-top: 14px;
+}
+.research-points dt {
+  font-weight: 600;
+  font-size: 14px;
+}
+.research-points dd {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.result-callout {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--warm);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.result-callout p {
+  margin: 0;
+  font-size: 13px;
+}
+.result-callout p:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.result-callout strong {
+  font-size: 30px;
+  letter-spacing: -0.5px;
+  color: var(--warm);
+  line-height: 1.1;
+}
+.result-callout span {
+  font: 10px var(--font-mono);
+  color: var(--warm);
+}
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.control-grid > div {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.control-grid h3 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+.research-production {
+  border-top: 1px solid var(--border);
+}
+
+/* MSc coursework */
+details.courses {
+  margin-top: 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+details.courses summary {
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.course-themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px 28px;
+  padding: 6px 16px 18px;
+}
+.course-themes h3 {
+  font: 10px/1.6 var(--font-mono);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.course-themes ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.course-themes li {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 7px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.course-code {
+  font: 10px var(--font-mono);
+  color: var(--muted);
+}
+.course-grade {
+  font-size: 11px;
+  color: var(--accent);
+}
+
+@media (max-width: 1000px) {
+  .pipeline-stages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pipeline-stages > li:nth-child(3)::before {
+    display: none;
+  }
+  .research-bridge {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .pipeline-stages,
+  .bridge,
+  .control-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pipeline-stages > li + li::before,
+  .bridge li + li::before {
+    display: none;
+  }
+  .result-callout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .result-callout p:first-child {
+    align-items: flex-start;
+  }
+}

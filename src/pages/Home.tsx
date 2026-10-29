@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import {
   credentials,
+  mscCourses,
   experience,
   flagship,
   paper,
@@ -386,6 +387,30 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <details className="courses">
+          <summary>
+            <span>MSc coursework: 14 courses, 13 graded Excellent</span>
+            <ChevronDown size={16} />
+          </summary>
+          <div className="course-themes">
+            {mscCourses.map((group) => (
+              <div key={group.theme}>
+                <h3>{group.theme}</h3>
+                <ul>
+                  {group.courses.map(([code, name, grade]) => (
+                    <li key={code}>
+                      <span className="course-code">{code}</span>
+                      <span>{name}</span>
+                      <span className="course-grade">
+                        {grade ?? "Excellent"}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
       </section>
       <Contact />
     </>

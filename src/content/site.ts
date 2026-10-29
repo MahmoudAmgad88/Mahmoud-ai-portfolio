@@ -67,6 +67,9 @@ export const paper = {
   source:
     "https://www.researchgate.net/publication/403965677_Policy-Calibrated_Forecast_Intervals_for_Anomaly_Detection_in_Radio_Access_Mobile_Network",
   result: "91.27%",
+  baseline: "72.18%",
+  gain: "+19.09",
+  accepted: "Accepted 13 April 2026 · Online 15 April 2026",
   metricLabel: "Balanced accuracy",
   contribution:
     "Policy-calibrated forecast intervals connect anomaly alerts to engineering relevance.",
@@ -114,6 +117,7 @@ export const projects: Project[] = [
     learning:
       "Separating detection logic from market configuration made new rollouts a config change, not a code change.",
     tags: ["Prophet", "Flask", "SQLite"],
+    caseStudy: "/projects/ran-kpi-anomaly-detection",
     detail:
       "As lead developer and solution architect, I designed the detection method, the application architecture and its adaptation across markets. It runs as a standalone desktop app with local processing, so network data never leaves the engineer’s machine, and produces interactive Plotly and Excel reports. It serves three market and vendor setups (Ericsson and Huawei) across two countries, with 73 KPI detection rules from 2G to 5G in one market’s configuration. The detection engine is the method from my published research; its research accuracy is not a production measurement. Code and data are private.",
   },
@@ -506,9 +510,139 @@ export const meta: Record<string, { title: string; description: string }> = {
     description:
       "A bilingual Arabic/English RAG service with citation validation, taken from notebook to a tested, versioned and containerised API.",
   },
+  "/projects/ran-kpi-anomaly-detection": {
+    title: `RAN KPI Anomaly Detection | ${profile.name}`,
+    description:
+      "How a peer-reviewed anomaly-detection method became a production tool for RAN engineering teams in two countries.",
+  },
   "/research": {
     title: `Research | ${profile.name}`,
     description:
       "Published research on policy-calibrated forecast intervals for radio access network anomaly detection.",
   },
 };
+export const production = {
+  title: "RAN KPI Anomaly Detection",
+  route: "/projects/ran-kpi-anomaly-detection",
+  facts: [
+    ["Status", "In production, 2 countries + 1 POC"],
+    ["Vendors", "Ericsson, Huawei"],
+    ["My role", "Lead developer, solution architect"],
+    ["Detection", "Published, peer-reviewed method"],
+    ["Decision model", "Engineer decides; no automated changes"],
+  ],
+  sections: [
+    ["overview", "Overview"],
+    ["pipeline", "Pipeline"],
+    ["research", "Research link"],
+    ["controls", "Controls"],
+    ["limitations", "Limitations"],
+  ],
+  tags: ["Prophet", "scikit-learn", "Flask", "SQLite"],
+  stages: [
+    {
+      title: "Ingest & validate",
+      items: [
+        "Excel / CSV upload, one sheet per technology",
+        "Schema, timestamp and unit checks",
+        "Vendor-neutral parsing (Ericsson, Huawei)",
+      ],
+      tech: "Python · pandas",
+    },
+    {
+      title: "Store",
+      items: [
+        "Normalised KPI time series",
+        "Indexed by site, cell, technology and KPI",
+        "Embedded storage, no server",
+      ],
+      tech: "SQLite",
+    },
+    {
+      title: "Forecast & detect",
+      items: [
+        "Per-KPI baseline forecast",
+        "Expert-tuned policy margins on interval bounds",
+        "Severity grading; consecutive vs single events",
+      ],
+      tech: "Prophet · scikit-learn",
+      research: true,
+    },
+    {
+      title: "Serve & visualise",
+      items: [
+        "REST API over stored results",
+        "Executive → site → cell drill-down",
+        "Dual-period comparison views",
+      ],
+      tech: "Flask",
+    },
+  ],
+  controls: [
+    "Username and password authentication",
+    "Machine-bound licensing",
+    "Time-limited release control",
+    "Approved onboarding required",
+  ],
+  dataHandling: [
+    "Local embedded storage, no external data transfer",
+    "Anonymised identifiers for demos and training",
+    "Outputs carry the source KPI classification",
+  ],
+  researchPoints: [
+    [
+      "Reviewed by people with nothing to sell",
+      "Independent academic reviewers assessed the method before publication, not only the team that built the tool.",
+    ],
+    [
+      "Tested against the alternatives",
+      "Compared head-to-head with other detection approaches, on real operator KPI data and on a public industry benchmark.",
+    ],
+    [
+      "Built to cut false alarms",
+      "Alerts align with what engineers actually treat as a problem: fewer wasted investigations, without missing real degradation.",
+    ],
+  ],
+  limitations: [
+    "The 91.27% figure is the published research evaluation, not a measured production accuracy.",
+    "Detection is univariate per KPI; correlated multi-KPI faults need engineer review.",
+    "Forecast quality depends on the history and quality of each KPI export.",
+    "Application code, operator data and screenshots are private; this page describes the design only.",
+  ],
+};
+export const mscCourses = [
+  {
+    theme: "Machine learning & AI",
+    courses: [
+      ["DS610", "Advanced Machine Learning"],
+      ["DS620", "Introduction to Deep Neural Nets"],
+      ["DS614", "Pattern Recognition"],
+      ["DS515", "Introduction to Data Mining"],
+    ],
+  },
+  {
+    theme: "Time series & statistics",
+    courses: [
+      ["DS611", "Time Series Forecasting"],
+      ["DS530", "Applied Statistical Inference"],
+      ["DS630", "Advanced Bayesian Inference for Data Science"],
+      ["DS605", "Advanced Topics in Statistics", "Very Good"],
+    ],
+  },
+  {
+    theme: "Mathematics & programming",
+    courses: [
+      ["DS505", "Linear Algebra"],
+      ["DS502", "Programming Foundations"],
+      ["DS625", "R Programming for Data Scientists"],
+    ],
+  },
+  {
+    theme: "Decision support & research",
+    courses: [
+      ["DS615", "Data Science and Decision Support Systems"],
+      ["DS698", "Ethics for Data Science and Scientific Research"],
+      ["DS699", "Project"],
+    ],
+  },
+];

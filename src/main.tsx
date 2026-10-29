@@ -21,6 +21,7 @@ import { CVButton, SocialLinks } from "./components";
 import Home from "./pages/Home";
 import CaseStudy from "./pages/CaseStudy";
 import CivilCodeRag from "./pages/CivilCodeRag";
+import ProductionDetection from "./pages/ProductionDetection";
 import Docs from "./pages/Docs";
 import Research from "./pages/Research";
 
@@ -196,6 +197,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects/ran-anomaly-rca" element={<CaseStudy />} />
           <Route path="/projects/civil-code-rag" element={<CivilCodeRag />} />
+          <Route
+            path="/projects/ran-kpi-anomaly-detection"
+            element={<ProductionDetection />}
+          />
           <Route path="/docs" element={<Docs />} />
           <Route path="/research" element={<Research />} />
           <Route path="*" element={<NotFound />} />
