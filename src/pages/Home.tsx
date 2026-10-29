@@ -102,7 +102,7 @@ export default function Home() {
         aria-label="Experience and published research evidence"
       >
         <div>
-          <strong>10 years</strong>
+          <strong>9+ years</strong>
           <span>Industry engineering / telecom</span>
         </div>
         <Link to="/#project-01" onClick={() => setCategory("all")}>
@@ -118,7 +118,7 @@ export default function Home() {
         </a>
         <Link to="/#experience">
           <strong>MSc 2026</strong>
-          <span>Data Science / Cairo University</span>
+          <span>Data Sciences / GPA 3.87</span>
         </Link>
       </section>
 
@@ -369,14 +369,23 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <ul
-          className="education credentials"
-          aria-label="Education and certification"
-        >
-          {credentials.map((item) => (
-            <li key={item}>{item}</li>
+        <div className="education credential-groups">
+          {credentials.map((group) => (
+            <div key={group.label}>
+              <p id={`credentials-${group.label.toLowerCase()}`}>
+                {group.label}
+              </p>
+              <ul
+                className="credentials"
+                aria-labelledby={`credentials-${group.label.toLowerCase()}`}
+              >
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
       <Contact />
     </>

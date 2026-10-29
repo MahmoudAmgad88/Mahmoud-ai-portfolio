@@ -1,6 +1,6 @@
 # Mahmoud Salakawy — AI / ML Engineer
 
-AI/ML engineer with 10 years of telecom RAN experience, building time-series anomaly detection and grounded GenAI (RAG) for network operations.
+AI/ML engineer with 9+ years of telecom RAN experience, building time-series anomaly detection and grounded GenAI (RAG) for network operations.
 
 **Targeting:** AI Engineer · Machine Learning Engineer · GenAI / LLM Engineer
 
@@ -12,8 +12,8 @@ AI/ML engineer with 10 years of telecom RAN experience, building time-series ano
 
 - **Domain:** Telecom RAN, 2G–5G, Ericsson and Huawei networks
 - **Research:** 1 paper published in the *Journal of Intelligent Computing and Data Science* (2026), 1 under review
-- **Education:** MSc Data Science, Cairo University · BSc Electrical Engineering, Cairo University
-- **Certifications:** SAFe® 6.0 Practitioner · AWS Certified Machine Learning Engineer, Associate (in progress)
+- **Education:** MSc Data Sciences, Cairo University (2026, GPA 3.87) · BSc Communications & Electronics Engineering, Cairo University (2011)
+- **Certifications:** Google Cloud Certified Associate Cloud Engineer (2026) · MLOps Practitioner (2026) · Certified SAFe® 6 Practitioner
 
 ## Featured case study: RAN Anomaly RCA
 

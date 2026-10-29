@@ -323,10 +323,21 @@ export const skills = [
   },
 ];
 export const credentials = [
-  "MSc Data Science / Cairo University, 2026",
-  "BSc Electrical Engineering / Cairo University, 2011",
-  "SAFe 6.0 Practitioner",
-  "AWS Certified Machine Learning Engineer, Associate / in progress",
+  {
+    label: "Education",
+    items: [
+      "MSc Data Sciences / Cairo University, 2026 / GPA 3.87",
+      "BSc Communications & Electronics Engineering / Cairo University, 2011",
+    ],
+  },
+  {
+    label: "Certifications",
+    items: [
+      "Google Cloud Certified Associate Cloud Engineer, 2026",
+      "MLOps Practitioner, 2026",
+      "Certified SAFe 6 Practitioner",
+    ],
+  },
 ];
 export const civilCode = {
   title: "Civil Code RAG",
@@ -454,7 +465,7 @@ export const stack = [
 ];
 export const experience = [
   {
-    period: "2024 — PRESENT",
+    period: "2025 — PRESENT",
     title: "AI solution architect & lead developer",
     text: "About 20% of my time alongside the core RAN role: a production anomaly-detection tool, grounded RCA prototyping, and leading an internal learning programme for about 70 engineers.",
   },
