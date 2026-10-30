@@ -31,6 +31,10 @@ export function ThemeToggle() {
   );
 }
 
+// Elements that fade up once as they first scroll into view.
+const revealTargets =
+  ".section-heading, .featured-card, .project-card, .more-projects, .experience-list, .skill-map, .paper-teaser, .contact, .publication, .case-section";
+
 export function PageEnhancements() {
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
@@ -38,77 +42,78 @@ export function PageEnhancements() {
     let frame = 0;
     const update = () => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 600);
-        const height =
-          document.documentElement.scrollHeight - window.innerHeight;
-        document.documentElement.style.setProperty(
-          "--reading-progress",
-          `${height > 0 ? (window.scrollY / height) * 100 : 0}%`,
-        );
-      });
+      frame = requestAnimationFrame(() => setScrolled(window.scrollY > 600));
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
     };
   }, [pathname]);
   useEffect(() => {
+    const main = document.getElementById("main");
+    // A page opened at an anchor shows its content at once: the visitor asked
+    // for that section, so it should not fade in after the jump.
     if (
+      !main ||
+      window.location.hash ||
       !window.IntersectionObserver ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     )
       return;
-    const elements = document.querySelectorAll(
-      ".section-heading, .featured-card, .project-card, .paper-teaser, .contact, .publication",
-    );
+    const seen = new WeakSet<Element>();
+    const pending = new Set<Element>();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.remove("reveal-pending");
+            pending.delete(entry.target);
             observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.05 },
     );
-    elements.forEach((element) => {
-      if (element.getBoundingClientRect().top > window.innerHeight) {
-        element.classList.add("reveal-pending");
-        observer.observe(element);
-      }
-    });
+    // Only content that starts below the fold is hidden, so nothing visible
+    // on load ever blinks.
+    const scan = () =>
+      main.querySelectorAll(revealTargets).forEach((element) => {
+        if (seen.has(element)) return;
+        seen.add(element);
+        if (element.getBoundingClientRect().top > window.innerHeight) {
+          element.classList.add("reveal-pending");
+          pending.add(element);
+          observer.observe(element);
+        }
+      });
+    scan();
+    // Lazily loaded pages render after this effect; pick them up when they do.
+    const mutations = new MutationObserver(scan);
+    mutations.observe(main, { childList: true, subtree: true });
     return () => {
+      mutations.disconnect();
       observer.disconnect();
-      elements.forEach((element) => element.classList.remove("reveal-pending"));
+      pending.forEach((element) => element.classList.remove("reveal-pending"));
     };
   }, [pathname]);
-  return (
-    <>
-      <div className="reading-progress" aria-hidden="true" />
-      {scrolled && (
-        <button
-          className="back-top"
-          aria-label="Back to top"
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-                .matches
-                ? "instant"
-                : "smooth",
-            });
-            document.getElementById("main")?.focus({ preventScroll: true });
-          }}
-        >
-          <ArrowUp size={20} />
-        </button>
-      )}
-    </>
-  );
+  return scrolled ? (
+    <button
+      className="back-top"
+      aria-label="Back to top"
+      onClick={() => {
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+            .matches
+            ? "instant"
+            : "smooth",
+        });
+        document.getElementById("main")?.focus({ preventScroll: true });
+      }}
+    >
+      <ArrowUp size={20} />
+    </button>
+  ) : null;
 }

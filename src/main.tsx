@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Link,
+  Navigate,
   Route,
   Routes,
   useLocation,
@@ -16,14 +17,16 @@ import "./styles.css";
 import "./refinements.css";
 import "./portfolio.css";
 import { PageEnhancements, ThemeToggle } from "./enhancements";
-import { meta, navigation, profile } from "./content/site";
+import { flagship, meta, navigation, profile } from "./content/site";
+import { absoluteUrl } from "./content/seo";
 import { CVButton, SocialLinks } from "./components";
 import Home from "./pages/Home";
-import CaseStudy from "./pages/CaseStudy";
-import CivilCodeRag from "./pages/CivilCodeRag";
-import ProductionDetection from "./pages/ProductionDetection";
-import Docs from "./pages/Docs";
-import Research from "./pages/Research";
+
+// Home ships in the main bundle; deeper pages load on first visit.
+const CaseStudy = lazy(() => import("./pages/CaseStudy"));
+const CivilCodeRag = lazy(() => import("./pages/CivilCodeRag"));
+const Docs = lazy(() => import("./pages/Docs"));
+const Research = lazy(() => import("./pages/Research"));
 
 function RouteEffects() {
   const { pathname, hash, key } = useLocation();
@@ -31,20 +34,25 @@ function RouteEffects() {
   useEffect(() => {
     const routeChanged = previousPath.current !== pathname;
     previousPath.current = pathname;
-    const page = meta[pathname.replace(/\/+$/, "") || "/"] ?? {
+    const route = pathname.replace(/\/+$/, "") || "/";
+    const page = meta[route] ?? {
       title: `Page not found | ${profile.name}`,
       description: "Find your way back to the portfolio.",
     };
     document.title = page.title;
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute("content", page.description);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute("content", page.title);
-    document
-      .querySelector('meta[property="og:description"]')
-      ?.setAttribute("content", page.description);
+    const set = (selector: string, attribute: string, value: string) =>
+      document.querySelector(selector)?.setAttribute(attribute, value);
+    set('meta[name="description"]', "content", page.description);
+    set('meta[property="og:title"]', "content", page.title);
+    set('meta[property="og:description"]', "content", page.description);
+    set('meta[name="twitter:title"]', "content", page.title);
+    set('meta[name="twitter:description"]', "content", page.description);
+    if (meta[route]) {
+      const url = absoluteUrl(meta[route].canonical ?? route);
+      set('link[rel="canonical"]', "href", url);
+      set('meta[property="og:url"]', "content", url);
+    }
+    let observer: MutationObserver | undefined;
     const timer = window.setTimeout(() => {
       if (hash) {
         let id = hash.slice(1);
@@ -53,14 +61,32 @@ function RouteEffects() {
         } catch {
           /* Invalid URL escapes are treated as literal anchors. */
         }
-        document.getElementById(id)?.scrollIntoView();
+        const target = document.getElementById(id);
+        if (target) target.scrollIntoView();
+        else {
+          // A lazy page may not have rendered yet; scroll once the anchor exists.
+          observer = new MutationObserver(() => {
+            const late = document.getElementById(id);
+            if (!late) return;
+            observer?.disconnect();
+            late.scrollIntoView();
+          });
+          observer.observe(document.getElementById("main")!, {
+            childList: true,
+            subtree: true,
+          });
+          window.setTimeout(() => observer?.disconnect(), 5000);
+        }
       } else {
         window.scrollTo(0, 0);
         if (routeChanged)
           document.getElementById("main")?.focus({ preventScroll: true });
       }
     }, 0);
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      observer?.disconnect();
+    };
   }, [pathname, hash, key]);
   return null;
 }
@@ -193,18 +219,21 @@ function App() {
       <Header />
       <PageEnhancements />
       <main id="main" className="container" tabIndex={-1}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/ran-anomaly-rca" element={<CaseStudy />} />
-          <Route path="/projects/civil-code-rag" element={<CivilCodeRag />} />
-          <Route
-            path="/projects/ran-kpi-anomaly-detection"
-            element={<ProductionDetection />}
-          />
-          <Route path="/docs" element={<Docs />} />
-          <Route path="/research" element={<Research />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<div className="route-loading" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/ran-anomaly-rca" element={<CaseStudy />} />
+            <Route path="/projects/civil-code-rag" element={<CivilCodeRag />} />
+            {/* Merged into the flagship; old shared links land on its production section. */}
+            <Route
+              path="/projects/ran-kpi-anomaly-detection"
+              element={<Navigate to={`${flagship.route}#production`} replace />}
+            />
+            <Route path="/docs" element={<Docs />} />
+            <Route path="/research" element={<Research />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       <footer>
         <div className="container footer-inner">

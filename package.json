@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test:smoke": "playwright test",
     "audit": "node scripts/audit.mjs",
-    "format": "prettier --write src tests *.ts *.json index.html README.md"
+    "format": "prettier --write src tests *.ts *.json index.html README.md",
+    "og-image": "node scripts/og-image.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.0",

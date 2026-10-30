@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { docs, faqs, technicalLimits } from "../content/docs";
-import { Architecture } from "../components";
+import { Architecture } from "../caseStudyParts";
 
 export default function Docs() {
   const { hash } = useLocation();

@@ -15,7 +15,7 @@
   margin-bottom: 14px;
 }
 .card-top .project-access {
-  font: 9px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1px;
   color: var(--muted);
   border: 1px solid var(--border);
@@ -40,7 +40,7 @@
   color: var(--accent);
 }
 .project-highlight span {
-  font: 10px/1.5 var(--font-mono);
+  font: 12px/1.5 var(--font-mono);
   color: var(--muted);
 }
 .project-links {
@@ -104,7 +104,7 @@
   margin-top: 26px;
 }
 .credential-groups p {
-  font: 10px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--muted);
@@ -153,7 +153,7 @@ ul.credentials li {
   color: var(--accent);
 }
 .scope-figures dt {
-  font: 10px/1.5 var(--font-mono);
+  font: 12px/1.5 var(--font-mono);
   color: var(--muted);
 }
 .route-list {
@@ -193,7 +193,7 @@ ul.credentials li {
   font-size: 14px;
 }
 .journey li span {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--accent);
 }
 .code-sample {
@@ -248,7 +248,7 @@ ul.credentials li {
   margin: -6px 0 24px;
 }
 .hero-fit p {
-  font: 10px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--warm);
@@ -275,7 +275,7 @@ ul.credentials li {
     margin-bottom: 18px;
   }
   .hero-fit li {
-    font-size: 11px;
+    font-size: 12px;
     padding: 4px 9px;
   }
 }
@@ -333,7 +333,7 @@ ul.credentials li {
 }
 .pipeline-stages h3 span,
 .pipeline-human h3 span {
-  font: 11px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--muted);
 }
 .pipeline-stages ul {
@@ -348,7 +348,7 @@ ul.credentials li {
 .pipeline-tech {
   margin: auto 0 0;
   padding: 12px 14px 14px;
-  font: 10px/1.5 var(--font-mono);
+  font: 12px/1.5 var(--font-mono);
   color: var(--muted);
 }
 .pipeline-stages > li.pipeline-research {
@@ -371,7 +371,7 @@ ul.credentials li {
   gap: 6px;
   align-self: flex-start;
   margin: 0 14px 14px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--warm);
 }
@@ -422,7 +422,7 @@ ul.credentials li {
 }
 .bridge span {
   display: block;
-  font: 10px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--accent);
@@ -499,7 +499,7 @@ ul.credentials li {
   line-height: 1.1;
 }
 .result-callout span {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--warm);
 }
 .control-grid {
@@ -545,7 +545,7 @@ details.courses summary {
   padding: 6px 16px 18px;
 }
 .course-themes h3 {
-  font: 10px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--muted);
@@ -566,11 +566,11 @@ details.courses summary {
   font-size: 13px;
 }
 .course-code {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--muted);
 }
 .course-grade {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
 }
 
@@ -601,5 +601,435 @@ details.courses summary {
   }
   .result-callout p:first-child {
     align-items: flex-start;
+  }
+}
+
+/* Recruiter hierarchy: hero copy, flagship stages, featured work, experience. */
+.recruiter-hero .hero-copy .hero-availability.hero-availability {
+  display: grid;
+  justify-content: start;
+  gap: 6px;
+  font-size: 13px;
+}
+.hero-availability p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.hero-availability p > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+.hero-availability .hero-location {
+  color: var(--muted);
+}
+.recruiter-proof > a span {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.flagship-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+  counter-reset: none;
+}
+.flagship-stages > li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.flagship-stages h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.flagship-stages p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.flagship-stages .eyebrow {
+  font-size: 12px;
+}
+.flagship-stages .stage-value strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+.flagship-stages .stage-value span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.flagship-stages .text-link {
+  margin-top: auto;
+  font-size: 14px;
+}
+
+.project-facts {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 16px;
+}
+.project-facts dt {
+  font: 12px/1.4 var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.project-facts dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.project-facts .project-result strong {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.project-facts .project-result span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+details.more-projects {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+details.more-projects > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+details.more-projects > summary::-webkit-details-marker {
+  display: none;
+}
+details.more-projects[open] > summary svg {
+  transform: rotate(180deg);
+}
+details.more-projects > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0 20px 12px;
+}
+details.more-projects > ul > li {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 96px;
+}
+details.more-projects > ul > li:nth-child(odd) {
+  padding-right: 24px;
+}
+.more-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.more-heading h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+.more-heading .project-access {
+  font: 12px/1.6 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.more-projects li > p {
+  margin: 6px 0 10px;
+  font-size: 14px;
+}
+
+.experience-list {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+.experience-list > li {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.experience-list > li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.experience-period {
+  margin: 2px 0 0;
+  font: 13px/1.5 var(--font-mono);
+  color: var(--muted);
+}
+.experience-list h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.experience-company {
+  margin: 2px 0 0;
+  font-weight: 500;
+  color: var(--accent);
+}
+.experience-list p:last-child {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 680px;
+}
+#education {
+  scroll-margin-top: 96px;
+}
+.research-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.case-subsection {
+  margin-top: 32px;
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 800px) {
+  .flagship-stages,
+  details.more-projects > ul {
+    grid-template-columns: 1fr;
+  }
+  details.more-projects > ul > li:nth-child(odd) {
+    padding-right: 0;
+  }
+  .experience-list > li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* Readability floor: labels stay at 12px or more (set above); sentence-length
+   captions and supporting text are never below 14px. */
+.small,
+.section-heading .small,
+.recruiter-proof.recruiter-proof > * > span,
+.flagship-stages .stage-value span,
+.project-facts .project-result span,
+.project-summary dd,
+.project-card details > p,
+.more-projects li details > p,
+ul.credentials li,
+details.courses summary > span,
+.course-themes li > span:nth-child(2),
+.paper-teaser p,
+.contact p,
+.footer-inner p,
+.bridge li,
+.paper-card p,
+.research-points dd,
+.result-callout p,
+.pipeline-stages ul li,
+.pipeline-human p,
+.check-list li > span,
+.case-signal p,
+.case-signal figcaption,
+.diagram-note,
+.evidence-bridge,
+.plain-list li,
+.case-contribution p,
+.scope-note p,
+.route-list dd,
+.case-glance dd,
+.research-production p,
+.next-research p,
+.publication .small {
+  font-size: 14px;
+}
+
+/* Tap targets: every stand-alone control is at least 44px tall (WCAG 2.5.5).
+   Links inside running text are exempt. */
+.text-link,
+.back-link,
+.hero-links a,
+.project-links a,
+.skill-map dd a,
+.case-anchors a,
+.nav > a,
+.brand,
+.footer-name,
+.footer-right a,
+.pipeline-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.nav .button,
+.socials a,
+.menu-toggle,
+.theme-toggle,
+.scenario-controls button,
+.chart-play {
+  min-height: 44px;
+  min-width: 44px;
+}
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+details > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.signal-inspector input[type="range"] {
+  min-height: 44px;
+}
+.skill-map dd {
+  row-gap: 0;
+}
+
+/* The portrait's <picture> wrapper must not affect layout. */
+.portrait-frame picture {
+  display: contents;
+}
+
+/* Holds the footer down while a lazy page loads. */
+.route-loading {
+  min-height: 100vh;
+}
+
+/* Motion: exactly four effects, all off under prefers-reduced-motion.
+   1. Hero entrance  2. Section reveal  3. Proof count-up  4. Card hover/focus */
+
+/* 1. Hero entrance: staggered 8px fade-up, about 400ms in total, once. */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+.hero-enter .hero-copy > *,
+.hero-enter .hero-person {
+  animation: hero-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero-enter .hero-copy > h1 {
+  animation-delay: 60ms;
+}
+.hero-enter .hero-copy > .hero-description,
+.hero-enter .hero-person {
+  animation-delay: 120ms;
+}
+.hero-enter .hero-copy > :nth-child(n + 4) {
+  animation-delay: 180ms;
+}
+
+/* 2. Section reveal: 6px fade-up the first time content scrolls into view. */
+.section-heading,
+.featured-card,
+.more-projects,
+.experience-list,
+.skill-map,
+.paper-teaser,
+.contact,
+.publication,
+.case-section {
+  transition:
+    opacity 300ms ease-out,
+    translate 300ms ease-out;
+}
+.reveal-pending {
+  opacity: 0;
+  translate: 0 6px;
+}
+
+/* 3. Count-up: the final value keeps its space; the frame is drawn over it. */
+.count-up {
+  position: relative;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+/* The proof strip styles every span as a caption; the figure's own spans
+   must keep the figure's type instead. */
+.proof-strip strong .count-up,
+.proof-strip strong .count-up span {
+  display: inline-block;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+.count-up-final {
+  opacity: 0;
+}
+.count-up-frame {
+  position: absolute;
+  inset: 0 auto auto 0;
+  white-space: nowrap;
+}
+
+/* 4. Card hover/focus: 2px lift, accent border, arrow nudge, 150ms. */
+.project-card,
+.flagship-stages > li {
+  transition:
+    opacity 300ms ease-out,
+    translate 300ms ease-out,
+    transform 150ms ease-out,
+    border-color 150ms ease-out;
+}
+.project-card:hover,
+.project-card:focus-within,
+.flagship-stages > li:hover,
+.flagship-stages > li:focus-within {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.project-card svg.lucide-arrow-up-right,
+.flagship-stages svg.lucide-arrow-right {
+  transition: translate 150ms ease-out;
+}
+.project-card:is(:hover, :focus-within) svg.lucide-arrow-up-right {
+  translate: 2px -2px;
+}
+.flagship-stages > li:is(:hover, :focus-within) svg.lucide-arrow-right {
+  translate: 2px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter .hero-copy > *,
+  .hero-enter .hero-person {
+    animation: none;
+  }
+  .reveal-pending {
+    opacity: 1;
+    translate: none;
+  }
+  .project-card:is(:hover, :focus-within),
+  .flagship-stages > li:is(:hover, :focus-within) {
+    transform: none;
+  }
+  .project-card svg.lucide-arrow-up-right,
+  .flagship-stages svg.lucide-arrow-right {
+    translate: none !important;
   }
 }

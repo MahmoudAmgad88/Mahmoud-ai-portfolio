@@ -1,21 +1,25 @@
 # Mahmoud Salakawy — AI / ML Engineer
 
-AI/ML engineer with 9+ years of telecom RAN experience, building time-series anomaly detection and grounded GenAI (RAG) for network operations.
+AI & ML Engineer. I build ML and GenAI systems that hold up in production: a peer-reviewed anomaly-detection method running in two countries, plus grounded RAG, ML APIs and MLOps pipelines. 10 years of data-heavy engineering in telecom RAN.
 
-**Targeting:** AI Engineer · Machine Learning Engineer · GenAI / LLM Engineer
+Cairo, Egypt · Open to remote and relocation
 
-[Live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) · [CV (PDF)](public/) · [LinkedIn](https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true) · [Email](mailto:eng.salakawy@gmail.com) · [Published paper (DOI)](https://doi.org/10.21608/jicds.2026.457039.1026)
+**Targeting:** AI/ML Engineer · GenAI Engineer · Data Scientist · AI Solution Architect
+
+[Live site](https://MahmoudAmgad88.github.io/Mahmoud-ai-portfolio/) · [CV (PDF)](public/) · [LinkedIn](https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/) · [Email](mailto:eng.salakawy@gmail.com) · [Published paper (DOI)](https://doi.org/10.21608/jicds.2026.457039.1026)
 
 ---
 
 ## At a glance
 
-- **Domain:** Telecom RAN, 2G–5G, Ericsson and Huawei networks
+- **Domain:** 10 years in telecom RAN, 2G–5G, Ericsson and Huawei networks
 - **Research:** 1 paper published in the *Journal of Intelligent Computing and Data Science* (2026), 1 under review
 - **Education:** MSc Data Sciences, Cairo University (2026, GPA 3.87) · BSc Communications & Electronics Engineering, Cairo University (2011)
 - **Certifications:** Google Cloud Certified Associate Cloud Engineer (2026) · MLOps Practitioner (2026) · Certified SAFe® 6 Practitioner
 
-## Featured case study: RAN Anomaly RCA
+## Featured case study: RAN Anomaly RCA (Research → Production → GenAI)
+
+A peer-reviewed detection method, the tool that runs it in production in two countries (+1 POC), and the GenAI Telecom Copilot that explains what it finds.
 
 Network engineers scan KPI dashboards cell by cell, and degradations often surface after customers are affected. This project combines two parts:
 

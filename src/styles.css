@@ -171,7 +171,7 @@ p + p {
 .button.compact {
   padding: 8px 13px;
   min-height: 36px;
-  font-size: 11px;
+  font-size: 12px;
 }
 .menu-toggle {
   display: none;
@@ -181,7 +181,7 @@ p + p {
   padding: 9px;
 }
 .eyebrow {
-  font: 10px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1.8px;
   color: var(--accent);
   margin-bottom: 16px;
@@ -216,12 +216,12 @@ p + p {
   border: 1px solid var(--border);
   padding: 5px 9px;
   border-radius: 4px;
-  font: 10px/1.5 var(--font-mono);
+  font: 12px/1.5 var(--font-mono);
   color: var(--muted);
   background: var(--surface);
 }
 .hero .tags > span {
-  font-size: 9px;
+  font-size: 12px;
 }
 .hero-actions {
   display: flex;
@@ -241,7 +241,7 @@ p + p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
   letter-spacing: 1px;
   color: var(--muted);
 }
@@ -277,17 +277,17 @@ p + p {
 }
 .axis-label {
   fill: var(--muted);
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
 }
 .annotation {
   fill: var(--warning);
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
 }
 .chart-legend {
   display: flex;
   justify-content: center;
   gap: 15px;
-  font-size: 8px;
+  font-size: 12px;
   color: var(--muted);
   margin: 7px 0 17px;
 }
@@ -313,7 +313,7 @@ p + p {
   border-radius: 50%;
 }
 .chart figcaption {
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--muted);
   text-align: center;
   padding-top: 14px;
@@ -356,7 +356,7 @@ p + p {
 .proof-strip span {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 8px;
   line-height: 1.6;
 }
@@ -411,7 +411,7 @@ p + p {
   font-size: 12px;
 }
 .step-dot {
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--muted);
   border: 1px solid var(--border);
   border-radius: 50%;
@@ -462,11 +462,11 @@ p + p {
   margin-bottom: 28px;
 }
 .card-top span {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--muted);
 }
 .project-card .eyebrow {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.3px;
   margin-bottom: 9px;
 }
@@ -484,7 +484,7 @@ p + p {
   align-content: start;
 }
 .project-card .tags > span {
-  font-size: 8px;
+  font-size: 12px;
 }
 .project-card details {
   margin-top: 18px;
@@ -492,7 +492,7 @@ p + p {
   padding-top: 16px;
 }
 .project-card summary {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
 }
 .project-card details p {
@@ -525,7 +525,7 @@ details[open] > summary svg {
 }
 .status {
   display: inline-block;
-  font: 9px/1.6 var(--font-mono);
+  font: 12px/1.6 var(--font-mono);
   letter-spacing: 1px;
   border-radius: 3px;
   padding: 4px 7px;
@@ -552,10 +552,10 @@ details[open] > summary svg {
   margin-bottom: 17px;
 }
 .mono {
-  font: 10px/1.8 var(--font-mono);
+  font: 12px/1.8 var(--font-mono);
 }
 .education {
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 22px;
 }
 .education span {
@@ -613,7 +613,7 @@ footer {
   font-weight: 500;
 }
 .footer-inner p {
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 8px;
 }
 .footer-right {
@@ -621,7 +621,7 @@ footer {
   gap: 18px;
   align-items: center;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 .footer-right > a {
   display: flex;
@@ -644,7 +644,7 @@ footer {
 }
 .back-link {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-bottom: 37px;
 }
@@ -710,7 +710,7 @@ footer {
   border-radius: 8px;
 }
 .diagram-label {
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
   letter-spacing: 1px;
   color: var(--muted);
   margin-bottom: 15px;
@@ -732,7 +732,7 @@ footer {
   text-align: center;
   display: grid;
   place-items: center;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -751,7 +751,7 @@ footer {
   color: var(--accent);
 }
 .evidence-bridge {
-  font: 8px var(--font-mono);
+  font: 12px var(--font-mono);
   text-align: center;
   color: var(--muted);
   display: flex;
@@ -773,7 +773,7 @@ footer {
   border-top: 1px solid var(--border);
   margin-top: 23px;
   padding-top: 18px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .diagram-note svg {
@@ -815,6 +815,8 @@ footer {
   border-left: 1px solid var(--border);
 }
 .docs-sidebar nav a {
+  min-height: 44px;
+  align-items: center;
   display: flex;
   gap: 12px;
   padding: 12px 14px;
@@ -824,7 +826,7 @@ footer {
   margin-left: -1px;
 }
 .docs-sidebar nav a span {
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
   padding-top: 2px;
 }
 .docs-sidebar nav a.current,
@@ -849,10 +851,10 @@ footer {
   padding: 18px;
 }
 .docs-content .architecture li {
-  font-size: 9px;
+  font-size: 12px;
 }
 .docs-content .diagram-note {
-  font-size: 9px;
+  font-size: 12px;
 }
 .faq-list {
   border-top: 1px solid var(--border);
@@ -981,7 +983,7 @@ footer {
   }
   .hero-actions .button {
     padding: 12px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .proof-strip > div,
   .proof-strip > a {
@@ -994,7 +996,7 @@ footer {
     font-size: 14px;
   }
   .workflow li {
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
   }
   .step-arrow {
@@ -1057,13 +1059,13 @@ footer {
     font-size: 12px;
   }
   .hero .tags > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .hero-actions {
     gap: 8px;
   }
   .hero-actions .button {
-    font-size: 10px;
+    font-size: 12px;
   }
   .chart {
     padding: 17px 13px;
@@ -1072,11 +1074,11 @@ footer {
     font-size: 18px;
   }
   .chart-heading {
-    font-size: 6px;
+    font-size: 12px;
   }
   .chart-legend {
     gap: 8px;
-    font-size: 7px;
+    font-size: 12px;
   }
   .proof-strip {
     grid-template-columns: 1fr 1fr;
@@ -1108,7 +1110,7 @@ footer {
     min-height: 86px;
   }
   .project-card .eyebrow {
-    font-size: 7px;
+    font-size: 12px;
   }
   .workflow {
     margin-inline: 25px;
@@ -1148,7 +1150,7 @@ footer {
     display: none;
   }
   .docs-content .architecture li {
-    font-size: 11px;
+    font-size: 12px;
   }
   .research-result {
     padding-left: 27px;
@@ -1176,23 +1178,23 @@ footer {
     margin-top: 21px;
   }
   .hero .tags > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .hero-actions .button {
-    font-size: 11px;
+    font-size: 12px;
     padding: 12px 14px;
   }
   .chart {
     padding: 22px 18px;
   }
   .chart-heading {
-    font-size: 7px;
+    font-size: 12px;
   }
   .chart-title {
     font-size: 22px;
   }
   .chart-legend {
-    font-size: 8px;
+    font-size: 12px;
     gap: 16px;
   }
   .proof-strip {
@@ -1207,7 +1209,7 @@ footer {
     line-height: 1.5;
   }
   .proof-strip span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .proof-strip > div,
   .proof-strip > a {
@@ -1230,7 +1232,7 @@ footer {
     gap: 12px 16px;
   }
   .workflow li {
-    font-size: 10px;
+    font-size: 12px;
   }
   .workflow .step-arrow {
     display: none;
@@ -1243,7 +1245,7 @@ footer {
     padding: 24px;
   }
   .project-card .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .project-card h3 {
     font-size: 22px;
@@ -1257,7 +1259,7 @@ footer {
     min-height: 0;
   }
   .project-card .tags > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .card-top {
     margin-bottom: 20px;
@@ -1269,7 +1271,7 @@ footer {
     font-size: 20px;
   }
   .paper-teaser .status {
-    font-size: 8px;
+    font-size: 12px;
   }
   .education {
     line-height: 1.9;
@@ -1304,7 +1306,7 @@ footer {
     justify-content: flex-start;
     max-width: none;
     flex-wrap: wrap;
-    font-size: 9px;
+    font-size: 12px;
   }
   .page-intro {
     padding: 42px 0 25px;
@@ -1341,7 +1343,7 @@ footer {
   }
   .evidence-bridge {
     line-height: 1.8;
-    font-size: 8px;
+    font-size: 12px;
   }
   .evidence-bridge span {
     width: 12px;
@@ -1349,7 +1351,7 @@ footer {
   }
   .diagram-note {
     align-items: flex-start;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.8;
   }
   .docs-layout {
@@ -1357,7 +1359,7 @@ footer {
     margin-top: 15px;
   }
   .docs-sidebar nav a {
-    font-size: 10px;
+    font-size: 12px;
     padding: 9px;
   }
   .docs-content > section {
@@ -1392,7 +1394,7 @@ footer {
     margin-bottom: 40px;
   }
   .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .back-link {
     margin-bottom: 26px;

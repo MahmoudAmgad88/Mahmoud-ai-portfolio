@@ -1,23 +1,29 @@
+import { pages } from "./seo";
 // Public assets and contact details confirmed from the supplied CV.
 // GitHub is the account that owns this portfolio's repository.
 export const profile = {
   name: "Mahmoud Salakawy",
   role: "AI & ML Engineer",
   initials: "MS",
-  headline: "I ship ML and GenAI that works on real data.",
+  headline: "I build ML and GenAI systems that hold up in production.",
   intro:
-    "From raw data to tested, documented services: forecasting, anomaly detection and RAG applications that teams can verify and maintain. Proven in production across two countries and in peer-reviewed research.",
+    "I designed a peer-reviewed anomaly-detection method (91.27% balanced accuracy) and built the tool that runs it in production across two countries. Today I build grounded GenAI (RAG assistants, ML APIs and MLOps pipelines) that teams can verify and trust.",
+  // TODO(owner): first year in telecom, so "10 years" matches the timeline (earliest listed role is 2017).
+  yearsInTelecom: "10 years",
   capabilities: ["Time-Series ML", "GenAI / RAG", "Telecom AI"],
   hireFor: [
+    "GenAI & RAG apps",
     "Forecasting & anomaly detection",
-    "RAG / LLM apps with guardrails",
+    "Predictive modeling",
     "ML APIs & MLOps",
   ],
-  availability: "Open to AI Engineer, ML Engineer and GenAI Engineer roles",
+  availability:
+    "Open to AI/ML Engineer, GenAI Engineer, Data Scientist and AI Solution Architect roles",
+  location: "Cairo, Egypt · Open to remote and relocation",
+  employer: "Vodafone Intelligent Solutions (_VOIS)",
   email: "eng.salakawy@gmail.com" as string | null,
-  linkedin:
-    "https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/?isSelfProfile=true" as
-      string | null,
+  linkedin: "https://www.linkedin.com/in/mahmoud-salakawy-msc-7b412b92/" as
+    string | null,
   github: "https://github.com/MahmoudAmgad88" as string | null,
   cv: `${import.meta.env.BASE_URL}mahmoud-salakawy-cv.pdf` as string | null,
   photo: `${import.meta.env.BASE_URL}mahmoud-salakawy.jpg` as string | null,
@@ -26,36 +32,61 @@ export const profile = {
 export const flagship = {
   title: "RAN Anomaly RCA",
   route: "/projects/ran-anomaly-rca",
+  subtitle: "Research → Production → GenAI",
   facts: [
-    ["Domain", "Telecom RAN"],
-    ["Core approach", "Time-series ML + grounded GenAI"],
-    ["Trust principle", "Evidence before explanation"],
-    ["Decision model", "Engineer remains in control"],
-    ["Research", "Peer-reviewed anomaly-detection methodology"],
+    ["Domain", "Telecom RAN, 2G–5G"],
+    ["Status", "In production, 2 countries + 1 POC"],
+    ["Vendors", "Ericsson, Huawei"],
+    ["My role", "Lead developer, solution architect"],
+    ["Research", "Peer-reviewed detection method"],
+    ["Decision model", "Engineer decides; no automated changes"],
   ],
   sections: [
     ["overview", "Overview"],
+    ["research", "Research"],
+    ["production", "Production"],
+    ["grounded-rca", "GenAI Copilot"],
     ["architecture", "Architecture"],
-    ["detection", "Detection"],
-    ["grounded-rca", "Grounded RCA"],
-    ["evidence", "Evidence"],
     ["limitations", "Limitations"],
   ],
-  tags: ["Time-series ML", "RAG", "Explainability", "Python"],
-  workflow: [
-    "Network KPIs",
-    "Detect",
-    "Rank",
-    "Ground",
-    "Explain",
-    "Engineer decides",
+  // The three stages of the flagship story, shown on Home and the case study.
+  // TODO(owner): confirm whether the production tool may be named "AIOS" publicly.
+  stages: [
+    {
+      step: "01",
+      label: "Research",
+      title: "Peer-reviewed detection method",
+      value: "91.27%",
+      valueLabel: "balanced accuracy, +19.09 pts vs best baseline",
+      text: "Policy-calibrated forecast intervals that flag what engineers treat as real degradation.",
+      to: "/projects/ran-anomaly-rca#research",
+    },
+    {
+      step: "02",
+      label: "Production",
+      title: "RAN KPI anomaly detection tool",
+      value: "2 countries",
+      valueLabel: "in production + 1 POC · 73 KPI rules, 2G–5G",
+      text: "Lead developer and solution architect. Runs the published method for Ericsson and Huawei networks.",
+      to: "/projects/ran-anomaly-rca#production",
+    },
+    {
+      step: "03",
+      label: "GenAI",
+      title: "GenAI Telecom Copilot",
+      value: "No evidence, no verdict",
+      valueLabel: "grounding gate with safety-contract tests",
+      text: "A RAG prototype that explains detected anomalies, keeping observed facts apart from hypotheses.",
+      to: "/projects/ran-anomaly-rca#grounded-rca",
+    },
   ],
+  tags: ["Time-series ML", "RAG", "Explainability", "Python"],
 };
 export const navigation = [
   { label: "Work", to: "/#selected-work", mobileOrder: 1, featured: false },
-  { label: flagship.title, to: flagship.route, mobileOrder: 0, featured: true },
+  { label: "Case study", to: flagship.route, mobileOrder: 0, featured: true },
   { label: "Research", to: "/research", mobileOrder: 2, featured: false },
-  { label: "Docs", to: "/docs", mobileOrder: 3, featured: false },
+  { label: "Experience", to: "/#experience", mobileOrder: 3, featured: false },
 ];
 export const paper = {
   title:
@@ -91,6 +122,7 @@ export type Project = {
   detail: string;
   caseStudy?: string;
   repo?: string;
+  featured?: boolean;
 };
 export const projectFilters: {
   label: string;
@@ -117,12 +149,13 @@ export const projects: Project[] = [
     learning:
       "Separating detection logic from market configuration made new rollouts a config change, not a code change.",
     tags: ["Prophet", "Flask", "SQLite"],
-    caseStudy: "/projects/ran-kpi-anomaly-detection",
+    caseStudy: "/projects/ran-anomaly-rca#production",
     detail:
       "As lead developer and solution architect, I designed the detection method, the application architecture and its adaptation across markets. It runs as a standalone desktop app with local processing, so network data never leaves the engineer’s machine, and produces interactive Plotly and Excel reports. It serves three market and vendor setups (Ericsson and Huawei) across two countries, with 73 KPI detection rules from 2G to 5G in one market’s configuration. The detection engine is the method from my published research; its research accuracy is not a production measurement. Code and data are private.",
   },
   {
     number: "02",
+    featured: true,
     title: "Flight Meal Demand Forecasting",
     type: "PRODUCTION FORECASTING",
     categories: ["production", "ml"],
@@ -140,6 +173,7 @@ export const projects: Project[] = [
   },
   {
     number: "03",
+    featured: true,
     title: "Civil Code RAG",
     type: "GENAI + MLOPS",
     categories: ["genai", "mlops"],
@@ -159,6 +193,7 @@ export const projects: Project[] = [
   },
   {
     number: "04",
+    featured: true,
     title: "IT Ticket Classification",
     type: "NLP / MODEL SERVING",
     categories: ["ml"],
@@ -183,7 +218,6 @@ export const projects: Project[] = [
     availability: "ASSESSMENT",
     description:
       "Predicting application type from network-side 5G QoS KPIs, without inspecting payloads.",
-    highlight: { value: "98.8%", label: "macro-F1 / small public dataset" },
     build:
       "Eight models, from logistic regression to TabNet, with telecom-informed features.",
     learning: "SHAP makes model outputs interpretable in telecom terms.",
@@ -215,7 +249,6 @@ export const projects: Project[] = [
     availability: "CAPSTONE",
     description:
       "Classifying mobile voice-call quality (MOS) from drive-test radio measurements.",
-    highlight: { value: "70.2%", label: "hold-out accuracy / 3 MOS classes" },
     build:
       "Cleaning, log transforms and a four-model baseline, then a tuned decision tree.",
     learning:
@@ -444,6 +477,12 @@ export const planned = [
   "Containerised delivery and CI/CD",
 ];
 export const limitations = [
+  "Detection research and the grounded RCA prototype are presented together; they are not one system with every capability deployed together.",
+  "The detection method is my peer-reviewed research. The application around it is team engineering, in which I was lead developer and solution architect.",
+  "The 91.27% figure is the published research evaluation (Table 11), not a measured production accuracy, and does not establish performance for the RCA prototype.",
+  "The RCA prototype is checked with safety-contract tests for evidence handling, not with an accuracy benchmark.",
+  "My AI work runs alongside the core RAN role, at about 20% of my time.",
+  "Correlated multi-KPI faults need engineer review.",
   "Detection described here is univariate per KPI; multivariate models are future work.",
   "Export quality and available history affect forecast and anomaly quality.",
   "Retrieved context can be incomplete or outdated; a plausible hypothesis is not a verified cause.",
@@ -467,63 +506,40 @@ export const stack = [
   "PyMuPDF",
   "pytest",
 ];
+// Newest first. Company is shown only where confirmed.
+// TODO(owner): employer for the 2017 and 2018 RAN roles (is the 2018 role at _VOIS?).
 export const experience = [
   {
-    period: "2025 — PRESENT",
-    title: "AI solution architect & lead developer",
-    text: "About 20% of my time alongside the core RAN role: a production anomaly-detection tool, grounded RCA prototyping, and leading an internal learning programme for about 70 engineers.",
+    period: "2025 — Present",
+    title: "AI Solution Architect & Lead Developer",
+    company: "Vodafone Intelligent Solutions (_VOIS)",
+    text: "Led the production RAN anomaly-detection tool (2 countries + 1 POC) and grounded RCA prototyping, and led an internal learning programme for about 70 engineers.",
   },
   {
     period: "2024 — 2025",
-    title: "Data scientist · freelance",
-    text: "Rebuilt a production meal-demand forecasting pipeline for an airline caterer: leakage removal, feature engineering and decision reports.",
+    title: "Data Scientist (freelance)",
+    company: "Client: CATRION, airline catering",
+    text: "Rebuilt a production meal-demand forecasting pipeline: leakage removal, feature engineering and decision reports.",
   },
   {
-    period: "2018 — PRESENT",
-    title: "Radio expert · RAN integration",
-    text: "Telecom domain experience informing anomaly analysis, explainability and repeatable data workflows.",
+    period: "2018 — Present",
+    title: "Radio Expert · RAN Integration",
+    company: null as string | null,
+    text: "2G–5G RAN integration on Ericsson and Huawei networks; the domain behind my anomaly-detection work.",
   },
   {
     period: "2017 — 2018",
-    title: "RAN integration engineering",
-    text: "A foundation in radio network integration, troubleshooting and engineering review.",
+    title: "RAN Integration Engineer",
+    company: null as string | null,
+    text: "Radio network integration, troubleshooting and engineering review.",
   },
 ];
-export const meta: Record<string, { title: string; description: string }> = {
-  "/": {
-    title: `${profile.name} | ${profile.role}`,
-    description:
-      "AI & ML Engineer shipping forecasting, anomaly detection and RAG applications on real data, with production deployments and peer-reviewed research.",
-  },
-  "/projects/ran-anomaly-rca": {
-    title: `${flagship.title} | ${profile.name}`,
-    description:
-      "An integrated portfolio case study connecting time-series anomaly detection research with a grounded RCA prototype.",
-  },
-  "/docs": {
-    title: `Documentation | ${profile.name}`,
-    description:
-      "Architecture, conceptual user guide, technical notes and limitations for the RAN Anomaly RCA case study.",
-  },
-  "/projects/civil-code-rag": {
-    title: `${civilCode.title} | ${profile.name}`,
-    description:
-      "A bilingual Arabic/English RAG service with citation validation, taken from notebook to a tested, versioned and containerised API.",
-  },
-  "/projects/ran-kpi-anomaly-detection": {
-    title: `RAN KPI Anomaly Detection | ${profile.name}`,
-    description:
-      "How a peer-reviewed anomaly-detection method became a production tool for RAN engineering teams in two countries.",
-  },
-  "/research": {
-    title: `Research | ${profile.name}`,
-    description:
-      "Published research on policy-calibrated forecast intervals for radio access network anomaly detection.",
-  },
-};
+// Titles and descriptions live in seo.ts so the build can write them into
+// each route's static HTML.
+export const meta = pages;
 export const production = {
   title: "RAN KPI Anomaly Detection",
-  route: "/projects/ran-kpi-anomaly-detection",
+  route: "/projects/ran-anomaly-rca#production",
   facts: [
     ["Status", "In production, 2 countries + 1 POC"],
     ["Vendors", "Ericsson, Huawei"],

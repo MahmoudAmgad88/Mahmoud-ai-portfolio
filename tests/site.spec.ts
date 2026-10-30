@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const routes = [
@@ -9,6 +9,18 @@ const routes = [
   "/docs",
   "/research",
 ];
+
+// Check contrast on the settled page, not mid-way through the hero entrance,
+// a section reveal or the proof count-up.
+async function settle(page: Page) {
+  await page.evaluate(() =>
+    Promise.all(
+      // Animations cancelled by a redirect reject; they are settled too.
+      document.getAnimations().map((a) => a.finished.catch(() => {})),
+    ),
+  );
+  await expect(page.locator(".count-up-frame")).toHaveCount(0);
+}
 
 for (const width of [375, 768, 1280, 1440]) {
   for (const route of routes) {
@@ -28,6 +40,7 @@ for (const width of [375, 768, 1280, 1440]) {
       expect(await page.title()).toContain("Mahmoud Salakawy");
       await page.reload();
       await expect(page.locator("h1")).toBeVisible();
+      await settle(page);
       const accessibility = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
         .analyze();
@@ -54,7 +67,7 @@ test("navigation, project details and documentation anchors", async ({
   await page.getByRole("button", { name: "Open navigation" }).click();
   await page
     .getByRole("navigation", { name: "Main navigation" })
-    .getByRole("link", { name: "RAN Anomaly RCA" })
+    .getByRole("link", { name: "Case study" })
     .click();
   await expect(page).toHaveURL(/projects\/ran-anomaly-rca$/);
   await expect(
@@ -84,7 +97,8 @@ test("all rendered internal links resolve and sensitive claims stay absent", asy
     await page.goto(route);
     const sourceUrl = page.url();
     const content = await page.locator("body").innerText();
-    expect(content).not.toMatch(/Vodafone|VOIS|C2 General/);
+    // The employer name is approved for Experience; classification labels are not.
+    expect(content).not.toMatch(/C2 General/);
     const links = await page
       .locator('a[href^="/"], a[href^="#"]')
       .evaluateAll((elements) => elements.map((e) => e.getAttribute("href")!));
@@ -109,27 +123,11 @@ test("project filters and synthetic signal inspection work", async ({
   page,
 }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "GenAI & LLMs", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(5);
-  await page.getByRole("button", { name: "MLOps", exact: true }).click();
-  await expect(page.locator(".project-card h3")).toHaveText([
-    "Civil Code RAG",
-    "Small-LLM Fine-Tuning",
-    "CI Model-Quality Gate",
-  ]);
-  await page
-    .getByRole("button", { name: "In production", exact: true })
-    .click();
-  await expect(page.locator(".project-card h3")).toHaveText([
-    "RAN KPI Anomaly Detection",
-    "Flight Meal Demand Forecasting",
-  ]);
-  await page
-    .getByRole("button", { name: "Machine learning", exact: true })
-    .click();
-  await expect(page.locator(".project-card")).toHaveCount(5);
-  await page.getByRole("button", { name: "All projects", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(11);
+  await expect(page.locator(".project-card")).toHaveCount(3);
+  const more = page.locator("details.more-projects");
+  await expect(more.locator("ul")).toBeHidden();
+  await more.locator("> summary").click();
+  await expect(more.locator("ul > li")).toHaveCount(7);
   await page.goto("/projects/ran-anomaly-rca#detection");
   await expect(page.locator(".signal-inspector output")).toHaveText(
     "Outside range",
@@ -173,14 +171,15 @@ test("personal portrait, CV download, theme persistence and playback", async ({
   expect((await downloadEvent).suggestedFilename()).toBe(
     "mahmoud-salakawy-cv.pdf",
   );
-  await expect(page.getByRole("link", { name: "Email me" })).toHaveAttribute(
-    "href",
-    "mailto:eng.salakawy@gmail.com",
-  );
+  for (const section of ["#about", "#contact"])
+    await expect(
+      page.locator(section).getByRole("link", { name: "Email me" }),
+    ).toHaveAttribute("href", "mailto:eng.salakawy@gmail.com");
   await page.getByRole("button", { name: "Switch to dark theme" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await settle(page);
   const accessibility = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
     .analyze();
@@ -257,10 +256,10 @@ test("recruiter scan leads from identity and proof to flagship and technical dep
   await page.goto("/");
   await expect(page.locator(".hero-name")).toHaveText("Mahmoud Salakawy");
   await expect(page.locator("h1")).toContainText("AI & ML Engineer");
+  await expect(page.locator("h1")).toContainText("hold up in production");
   await expect(
-    page.getByRole("link", { name: "View 11 projects", exact: true }),
+    page.getByRole("link", { name: "Read the flagship case study" }),
   ).toBeInViewport();
-  await expect(page.locator("h1")).not.toContainText("telecom");
   await expect(
     page.getByRole("link", { name: "Download CV" }).first(),
   ).toBeInViewport();
@@ -278,13 +277,10 @@ test("recruiter scan leads from identity and proof to flagship and technical dep
   expect(sequence[1]).toContain("proof-strip");
   expect(sequence[2]).toBe("projects");
   expect(sequence[3]).toBe("selected-work");
-  await expect(page.locator(".workflow li")).toHaveText([
-    "01Network KPIs",
-    "02Detect",
-    "03Rank",
-    "04Ground",
-    "05Explain",
-    "06Engineer decides",
+  await expect(page.locator("#projects .flagship-stages h3")).toHaveText([
+    "Peer-reviewed detection method",
+    "RAN KPI anomaly detection tool",
+    "GenAI Telecom Copilot",
   ]);
   await page.getByRole("link", { name: "Explore full case study" }).click();
   await expect(page.locator("h1")).toContainText("RAN Anomaly");
@@ -310,17 +306,17 @@ test("refined header stays calm, ordered and keyboard accessible at every breakp
       await page.getByRole("button", { name: "Open navigation" }).click();
       await page.keyboard.press("Tab");
       await expect(
-        nav.getByRole("link", { name: "RAN Anomaly RCA", exact: true }),
+        nav.getByRole("link", { name: "Case study", exact: true }),
       ).toBeFocused();
       expect(
         (await nav.getByRole("link").allTextContents()).map((label) =>
           label.trim(),
         ),
       ).toEqual([
-        "RAN Anomaly RCA",
+        "Case study",
         "Work",
         "Research",
-        "Docs",
+        "Experience",
         "Download CV",
         "Contact",
       ]);
@@ -334,7 +330,13 @@ test("refined header stays calm, ordered and keyboard accessible at every breakp
         (await nav.getByRole("link").allTextContents()).map((label) =>
           label.trim(),
         ),
-      ).toEqual(["Work", "RAN Anomaly RCA", "Research", "Docs", "Download CV"]);
+      ).toEqual([
+        "Work",
+        "Case study",
+        "Research",
+        "Experience",
+        "Download CV",
+      ]);
       const bounds = await nav.getByRole("link").evaluateAll((links) =>
         links.map((link) => {
           const rect = link.getBoundingClientRect();
@@ -347,7 +349,7 @@ test("refined header stays calm, ordered and keyboard accessible at every breakp
     }
     expect(
       (await page.locator("main").innerText()).match(/91\.27%/g),
-    ).toHaveLength(1);
+    ).toHaveLength(3); // hero summary, proof strip, flagship stage
     await expect(page.locator(".portrait-caption")).toHaveCount(0);
     expect(
       await page.evaluate(
@@ -370,10 +372,10 @@ test("engineering case study exposes anchors and a responsive verified summary",
   await page.emulateMedia({ reducedMotion: "reduce" });
   const labels = [
     "Overview",
+    "Research",
+    "Production",
+    "GenAI Copilot",
     "Architecture",
-    "Detection",
-    "Grounded RCA",
-    "Evidence",
     "Limitations",
   ];
   for (const width of [375, 768, 1280, 1440]) {
@@ -384,12 +386,13 @@ test("engineering case study exposes anchors and a responsive verified summary",
     await expect(summary.locator("dt")).toHaveText([
       "Project",
       "Domain",
-      "Core approach",
-      "Trust principle",
-      "Decision model",
+      "Status",
+      "Vendors",
+      "My role",
       "Research",
+      "Decision model",
     ]);
-    await expect(summary).toContainText("Evidence before explanation");
+    await expect(summary).toContainText("Lead developer, solution architect");
     const intro = await page.locator(".case-introduction").boundingBox();
     const panel = await summary.boundingBox();
     if (width > 800) expect(panel!.x).toBeGreaterThan(intro!.x + intro!.width);
@@ -419,18 +422,21 @@ test("homepage cards stay concise with engineering detail behind disclosure", as
   page,
 }) => {
   await page.goto("/");
-  await expect(
-    page.locator("#projects .transformation-grid > div"),
-  ).toHaveCount(3);
+  await expect(page.locator("#projects .flagship-stages > li")).toHaveCount(3);
   await expect(
     page.locator("#projects .signal-demo, #projects .chart"),
   ).toHaveCount(0);
   await expect(page.locator("#projects .flagship-actions a")).toHaveCount(2);
   for (const card of await page.locator(".project-card").all()) {
-    await expect(card.locator(".project-purpose")).toBeVisible();
+    await expect(card.locator(".project-facts dt")).toContainText([
+      "Problem",
+      "Built",
+      "Stack",
+      "Result",
+    ]);
     await expect(card.locator(".tags > span")).toHaveCount(3);
     await expect(card.locator(".project-summary")).toBeHidden();
-    expect((await card.boundingBox())!.height).toBeLessThan(420);
+    expect((await card.boundingBox())!.height).toBeLessThan(640);
     await card.getByText("Project details", { exact: true }).click();
     await expect(card.locator(".project-summary")).toBeVisible();
     await card.getByText("Project details", { exact: true }).click();
@@ -441,11 +447,11 @@ test("implemented capabilities and future work stay visibly distinct", async ({
   page,
 }) => {
   await page.goto("/projects/ran-anomaly-rca");
-  const detectionStatus = page.locator("#detection .status");
+  const detectionStatus = page.locator("#production > .status");
   const rcaStatus = page.locator("#grounded-rca .status");
   const future = page.locator("#limitations .case-planned");
   const futureStatus = future.locator(".status");
-  await expect(detectionStatus).toHaveText("IMPLEMENTED / DETECTION WORK");
+  await expect(detectionStatus).toHaveText("IN PRODUCTION");
   await expect(rcaStatus).toHaveText("IMPLEMENTED / RCA PROTOTYPE");
   await expect(futureStatus).toHaveText("PLANNED / NOT IMPLEMENTED");
   await expect(future).toContainText("LSTM autoencoders");
@@ -477,15 +483,20 @@ test("every project is listed and Civil Code RAG has a full case study", async (
 }) => {
   await page.goto("/");
   await expect(page.locator(".hero-fit li")).toHaveText([
+    "GenAI & RAG apps",
     "Forecasting & anomaly detection",
-    "RAG / LLM apps with guardrails",
+    "Predictive modeling",
     "ML APIs & MLOps",
   ]);
+  await expect(page.locator("#projects .flagship-stages")).toContainText(
+    "RAN KPI anomaly detection tool",
+  );
   await expect(page.locator(".project-card h3")).toHaveText([
-    "RAN KPI Anomaly Detection",
     "Flight Meal Demand Forecasting",
     "Civil Code RAG",
     "IT Ticket Classification",
+  ]);
+  await expect(page.locator(".more-projects h3")).toHaveText([
     "5G QoS Classification",
     "Weather-Aware RAG Assistant",
     "Voice Call QoE Prediction",
@@ -531,7 +542,7 @@ test("research connects to the production tool and courses are listed", async ({
 }) => {
   await page.goto("/research");
   await page.getByRole("link", { name: "See how it was deployed" }).click();
-  await expect(page).toHaveURL(/projects\/ran-kpi-anomaly-detection$/);
+  await expect(page).toHaveURL(/projects\/ran-anomaly-rca#production$/);
   await expect(page.locator(".pipeline-stages > li")).toHaveCount(4);
   await expect(page.locator(".pipeline-research")).toContainText(
     "Forecast & detect",
@@ -539,7 +550,6 @@ test("research connects to the production tool and courses are listed", async ({
   await expect(page.locator("#research .result-callout")).toContainText(
     "91.27%",
   );
-  await expect(page.locator("main")).not.toContainText(/VOIS|Vodafone/);
   await page.goto("/");
   const courses = page.locator("details.courses");
   await expect(courses.locator(".course-themes li")).toHaveCount(14);

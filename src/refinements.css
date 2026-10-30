@@ -66,7 +66,7 @@ body {
   border-radius: 30px;
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 11px;
+  font-size: 12px;
   margin-bottom: 26px;
 }
 .availability > span {
@@ -92,9 +92,8 @@ body {
 .button {
   border-radius: 7px;
   transition:
-    transform 0.2s,
     background 0.2s,
-    box-shadow 0.2s;
+    border-color 0.2s;
 }
 .button.primary {
   color: var(--on-accent);
@@ -102,12 +101,9 @@ body {
 }
 .button.primary:hover {
   background: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px var(--shadow);
 }
 .button.secondary:hover {
   background: var(--accent-soft);
-  transform: translateY(-2px);
 }
 .tags > span {
   background: var(--surface-raised);
@@ -143,7 +139,7 @@ body {
   border-radius: 5px;
   background: transparent;
   color: var(--muted);
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
 }
 .scenario-controls button[aria-pressed="true"] {
   background: var(--surface);
@@ -162,7 +158,7 @@ body {
   border-top: 1px solid var(--border);
   padding: 14px 0;
   color: var(--muted);
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
 }
 .signal-inspector input {
   width: 100%;
@@ -188,7 +184,7 @@ body {
   gap: 7px;
   width: 100%;
   min-height: 34px;
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   color: var(--accent);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -196,7 +192,7 @@ body {
   margin-bottom: 15px;
 }
 .chart figcaption {
-  font-size: 8px;
+  font-size: 12px;
   line-height: 1.8;
 }
 .legend-point {
@@ -226,7 +222,7 @@ body {
   background: var(--accent-soft);
   aspect-ratio: 6 / 7;
 }
-.portrait-frame > img {
+.portrait-frame img {
   display: block;
   width: 100%;
   height: 100%;
@@ -254,7 +250,7 @@ body {
   color: var(--warm);
 }
 .portrait-monogram p {
-  font: 10px var(--font-mono);
+  font: 12px var(--font-mono);
   margin-top: 20px;
 }
 .featured-card {
@@ -275,7 +271,7 @@ body {
   margin-bottom: 24px;
 }
 .project-toolbar > span {
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
 }
 .project-filters {
@@ -288,7 +284,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 30px;
   padding: 9px 15px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   background: var(--surface);
 }
@@ -303,19 +299,9 @@ body {
 .project-card {
   border-radius: 12px;
   background: var(--surface);
-  transition:
-    transform 0.3s,
-    border-color 0.3s,
-    box-shadow 0.3s,
-    opacity 0.6s;
-}
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 14px 30px var(--shadow);
 }
 .project-card summary {
-  min-height: 40px;
+  min-height: 44px;
   align-items: center;
 }
 .paper-teaser {
@@ -378,16 +364,6 @@ footer {
   color: var(--accent);
   background: var(--accent-soft);
 }
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: var(--reading-progress, 0%);
-  background: var(--warm);
-  z-index: 50;
-  pointer-events: none;
-}
 .back-top {
   display: grid;
   place-items: center;
@@ -402,19 +378,6 @@ footer {
   background: var(--surface);
   color: var(--accent);
   box-shadow: 0 4px 20px var(--shadow);
-}
-.section-heading,
-.featured-card,
-.paper-teaser,
-.expertise,
-.contact,
-.publication {
-  transition:
-    transform 0.6s,
-    opacity 0.6s;
-}
-.reveal-pending {
-  transform: translateY(18px);
 }
 @media (max-width: 1100px) {
   .nav {
@@ -442,7 +405,7 @@ footer {
 @media (max-width: 900px) and (min-width: 801px) {
   .nav {
     gap: 11px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .header-inner {
     width: calc(100% - 40px);
@@ -476,7 +439,7 @@ footer {
     font-size: 40px;
   }
   .availability {
-    font-size: 9px;
+    font-size: 12px;
     padding: 8px 10px;
     margin-bottom: 22px;
   }
@@ -522,7 +485,7 @@ footer {
     font-size: clamp(40px, 10.5vw, 58px);
   }
   .availability {
-    font-size: 10px;
+    font-size: 12px;
   }
   .hero-description {
     font-size: 14px;
@@ -576,7 +539,7 @@ footer {
     gap: 6px;
   }
   .project-filters button {
-    font-size: 10px;
+    font-size: 12px;
     padding-inline: 11px;
   }
   .paper-teaser {
@@ -594,7 +557,7 @@ footer {
   }
   .brand {
     gap: 9px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .monogram {
     width: 38px;
@@ -613,21 +576,10 @@ footer {
     bottom: 16px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .reveal-pending {
-    opacity: 1;
-    transform: none;
-  }
-  .button:hover,
-  .project-card:hover {
-    transform: none;
-  }
-}
 @media print {
   .header,
   footer,
   .back-top,
-  .reading-progress,
   .project-filters,
   .contact-actions {
     display: none;
@@ -711,7 +663,7 @@ footer {
   margin-top: 20px;
   padding-top: 18px;
   border-top: 1px solid var(--border);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text);
 }
 .hero-intersection > span {
@@ -731,7 +683,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 13px;
 }
 .hero-availability > span {
@@ -752,7 +704,7 @@ footer {
   margin-top: 0;
 }
 .recruiter-proof span {
-  font-size: 10px;
+  font-size: 12px;
 }
 .flagship-story {
   margin-top: 64px;
@@ -794,7 +746,7 @@ footer {
   padding-top: 18px;
 }
 .transformation-grid .eyebrow {
-  font-size: 9px;
+  font-size: 12px;
   margin-bottom: 9px;
 }
 .transformation-grid h4 {
@@ -813,7 +765,7 @@ footer {
 }
 .flagship-workflow > .eyebrow {
   margin-bottom: 18px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .flagship-workflow .workflow {
@@ -823,7 +775,7 @@ footer {
   gap: 16px;
 }
 .flagship-workflow .workflow li {
-  font-size: 11px;
+  font-size: 12px;
 }
 .flagship-workflow .step-arrow {
   margin-left: 4px;
@@ -853,7 +805,7 @@ footer {
   gap: 15px;
 }
 .project-summary dt {
-  font: 8px/1.7 var(--font-mono);
+  font: 12px/1.7 var(--font-mono);
   letter-spacing: 0.7px;
   text-transform: uppercase;
   color: var(--accent);
@@ -891,7 +843,7 @@ footer {
   letter-spacing: -1px;
 }
 .research-proof > span {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   line-height: 1.7;
 }
@@ -930,11 +882,11 @@ footer {
   border-radius: 50%;
   background: var(--accent-soft);
   color: var(--accent);
-  font: 9px var(--font-mono);
+  font: 12px var(--font-mono);
   margin-bottom: 15px;
 }
 .career-period {
-  font-size: 9px;
+  font-size: 12px;
   margin-bottom: 10px;
 }
 .career-journey h3 {
@@ -963,7 +915,7 @@ footer {
     font-size: 42px;
   }
   .hero-intersection {
-    font-size: 10px;
+    font-size: 12px;
   }
   .flagship-workflow .workflow {
     display: grid;
@@ -996,11 +948,11 @@ footer {
     font-size: 13px;
   }
   .recruiter-hero .hero-actions .button {
-    font-size: 11px;
+    font-size: 12px;
     padding: 11px 13px;
   }
   .hero-availability {
-    font-size: 8px;
+    font-size: 12px;
   }
   .hero-intersection {
     line-height: 1.8;
@@ -1074,16 +1026,16 @@ footer {
     gap: 10px;
   }
   .recruiter-hero .hero-actions .button {
-    font-size: 10px;
+    font-size: 12px;
     padding: 11px 12px;
   }
   .hero-links {
     margin-top: 15px;
     gap: 23px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .hero-intersection {
-    font-size: 10px;
+    font-size: 12px;
     gap: 5px 8px;
     margin-top: 15px;
     padding-top: 14px;
@@ -1095,7 +1047,7 @@ footer {
     font-size: 19px;
   }
   .recruiter-proof span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .flagship-story {
     margin-top: 44px;
@@ -1131,7 +1083,7 @@ footer {
     gap: 16px 12px;
   }
   .flagship-workflow .workflow li {
-    font-size: 10px;
+    font-size: 12px;
   }
   .flagship-actions {
     align-items: flex-start;
@@ -1140,10 +1092,10 @@ footer {
     padding: 20px 20px 25px;
   }
   .flagship-actions .button {
-    font-size: 11px;
+    font-size: 12px;
   }
   .flagship-actions .text-link {
-    font-size: 11px;
+    font-size: 12px;
   }
   .selected .project-card h3 {
     font-size: 21px;
@@ -1209,7 +1161,7 @@ footer {
     margin-bottom: 8px;
   }
   .career-period {
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 8px;
   }
   .contact h2 {
@@ -1277,7 +1229,7 @@ footer {
   min-height: 36px;
   padding: 8px 12px;
   margin-left: 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   background: var(--surface);
 }
@@ -1314,7 +1266,7 @@ footer {
 }
 .hero-availability {
   margin-top: 10px;
-  font-size: 9px;
+  font-size: 12px;
 }
 .research-proof strong {
   font-size: 24px;
@@ -1334,7 +1286,7 @@ html {
   }
   .portfolio-header .nav {
     gap: 16px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .portfolio-header .brand {
     font-size: 12px;
@@ -1342,7 +1294,7 @@ html {
   }
   .portfolio-header .nav-cv {
     padding-inline: 9px;
-    font-size: 10px;
+    font-size: 12px;
     margin-left: 0;
   }
 }
@@ -1360,8 +1312,8 @@ html {
     display: grid;
     place-items: center;
     margin-left: auto;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: 44px;
+    min-height: 44px;
   }
   .portfolio-header .menu-toggle > svg {
     width: 20px;
@@ -1392,7 +1344,7 @@ html {
   }
   .portfolio-header .nav > .nav-cv {
     margin: 12px 0 8px;
-    min-height: 40px;
+    min-height: 44px;
     font-size: 12px;
     padding-inline: 15px;
   }
@@ -1418,7 +1370,7 @@ html {
     display: none;
   }
   .recruiter-hero .hero-copy .hero-intersection {
-    font-size: 11px;
+    font-size: 12px;
   }
   .recruiter-research .research-proof {
     grid-template-columns: auto 1fr;
@@ -1436,7 +1388,7 @@ html {
   display: flex;
   justify-content: flex-start;
   margin-top: 12px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
 }
 .flagship-workflow + .transformation-grid {
@@ -1531,7 +1483,7 @@ html {
 }
 .case-glance > .eyebrow {
   margin-bottom: 8px;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 1.1px;
 }
 .case-glance h2 {
@@ -1549,7 +1501,7 @@ html {
 }
 .case-glance dt {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 6px;
 }
 .case-glance dd {
@@ -1569,8 +1521,8 @@ html {
 }
 .case-anchors a {
   color: var(--muted);
-  font-size: 11px;
-  min-height: 40px;
+  font-size: 12px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   border-bottom: 1px solid transparent;
@@ -1610,7 +1562,7 @@ html {
   gap: 14px;
 }
 .case-section .architecture li {
-  font-size: 10px;
+  font-size: 12px;
   padding: 9px 5px;
 }
 .case-section .architecture li:not(:last-child):after {
@@ -1666,7 +1618,7 @@ html {
     padding: 20px;
   }
   .case-section .architecture li {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 @media (max-width: 800px) {
@@ -1690,7 +1642,7 @@ html {
     gap: 4px 24px;
   }
   .case-section .architecture li {
-    font-size: 11px;
+    font-size: 12px;
   }
   .home-project-summary {
     gap: 18px;
@@ -1743,13 +1695,13 @@ html {
     gap: 0 18px;
   }
   .case-glance dd {
-    font-size: 11px;
+    font-size: 12px;
   }
   .case-anchors {
     gap: 0 20px;
   }
   .case-anchors a {
-    font-size: 11px;
+    font-size: 12px;
     min-height: 42px;
   }
   .case-section {
